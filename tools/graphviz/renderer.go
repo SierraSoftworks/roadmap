@@ -20,6 +20,7 @@ const roadmapTemplate = `
 digraph Roadmap {
   rankdir=LR;
   label={{ .Title | json }};
+  tooltip={{ .Description | json }};
   fontname="Arial";
   compound=true;
   labelloc="t";
@@ -29,8 +30,8 @@ digraph Roadmap {
 
   {
 	rank=same;
-	
-	start[label="Start",shape="house",color=""];
+
+	start[label="Start",shape="house",color="",tooltip="This is the start of your roadmap."];
 
   {{- range $index, $milestone := .Milestones -}}
   {{- with $milestone -}}
@@ -54,6 +55,7 @@ digraph Roadmap {
 
   subgraph cluster_{{ $id }} {
 	label={{ .Title | json }};
+	tooltip={{ .Description | json }};
 	fontsize=8;
 	penwidth=0.6;
 
