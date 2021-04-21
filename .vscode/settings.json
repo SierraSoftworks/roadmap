@@ -1,0 +1,5 @@
+{
+    "yaml.schemas": {
+        "./roadmap.schema.json": "roadmap.yml"
+    }
+}

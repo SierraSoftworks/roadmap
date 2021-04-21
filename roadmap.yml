@@ -1,0 +1,115 @@
+title: '"Road map" Road map'
+description: |
+  This is the planning road map for the [SierraSoftworks/roadmap](https://github.com/SierraSoftworks/roadmap)
+  project. It acts as both the plan for implementing this tool as well as a demonstration of what a road map
+  might look like.
+
+  One of the things you'll immediately notice about this file is that it uses *Markdown* for formatting of
+  text and is designed around a structured YAML schema. The goal is to make this as easy as possible for
+  humans to read and reason about, while also enabling powerful visualizations to be generated based on
+  the content.
+
+authors:
+  - name: Benjamin Pannell
+    contact: contact@sierrasoftworks.com
+
+# The timeline allows us to highlight important dates on our road map. These are intentionally separated
+# from the stages as it is expected that the delivery of stages themselves occur based on their dependencies
+# and that the specific delivery dates may shift as a result.
+timeline:
+  - date: 2021-04-21
+    title: Project Start
+    description: |
+      This is the day that the project was started.
+
+  - date: 2021-06-01
+    title: Demo Day
+    description: |
+      This is the scheduled date for the first demo of this project to a wider audience.
+
+milestones:
+  - id: planning
+    title: Design & Planning
+    description: |
+      The design and planning stage is where we're figuring out how this project should work and, broadly,
+      what kind of information we want to show on our road maps.
+    deliverables:
+      - title: README
+        state: DONE
+        requirement: MUST
+        description: |
+          We need to add a README file explaining the purpose of this project and giving some basic examples
+          of its use.
+      - title: Road Map
+        state: DONE
+        requirement: MUST
+        description: |
+          We need to know what the road map file format looks like, so we'll get started with an example road
+          map to kick the tyres.
+
+  - id: schema
+    title: Road Map Schema
+    dependencies:
+      - planning
+    description: |
+      Once we know how we want a road map file to look, we should put together a schema for the file. This
+      will allow us to document the file structure and provide a first class editing experience to people
+      using it.
+    deliverables:
+      - title: roadmap.schema.json
+        description: |
+          Put together a JSONSchema file describing the road map file format.
+        state: DOING
+        requirement: MUST
+      - title: Publish Schema
+        reference: https://schemas.sierrasoftworks.com
+        description: |
+          Publish the schema file on [schemas.sierrasoftworks.com](https://schemas.sierrasoftworks.com)
+          so that people can reference it easily.
+        requirement: MUST
+
+  - id: graphviz
+    title: GraphViz Renderer
+    dependencies:
+      - planning
+    description: |
+      The first output format we would like to target with this project is GraphViz. It isn't necessarily
+      the most beautiful or powerful output format, but it is a simple target to demonstrate functionality
+      and give us a useful proof of concept.
+
+      Most importantly, it sidesteps the issue of us figuring out how to present road maps because we have
+      some good examples to build off of.
+    deliverables:
+      - title: GraphViz Generator
+        description: |
+          We need to write a generator which converts a road map YAML file into an appropriate GraphViz
+          DOT file which can then be rendered by any GraphViz renderer. This output format might only
+          support a subset of the total Road Map schema's features initially.
+        requirement: SHOULD
+
+  - id: docs-website
+    title: Documentation Website
+    dependencies:
+      - planning
+      - graphviz
+    description: |
+      The next step here is to put together a website explaining how to use road map. Initially this will
+      be just a documentation website, but we should design with the expectation that we will be adding
+      an in-page renderer for road maps and eventually an in-page editor experience as well (likely with
+      Monaco or similar).
+    deliverables:
+      - title: VuePress Website
+        reference: https://vuepress2.netlify.app
+        description: |
+          It makes sense for us to bundle the documentation and the editor in a common website. The
+          easiest way for us to do this will likely be to build on [VuePress 2](https://vuepress2.netlify.app)
+          given our previous experience with it and Vue.
+
+          This should then be published somewhere (presumably roadmap.sierrasoftworks.com).
+        requirement: SHOULD
+
+      - title: Documentation
+        description: |
+          Let's write some documentation explaining how to use road map and publish that on the website.
+        requirement: SHOULD
+

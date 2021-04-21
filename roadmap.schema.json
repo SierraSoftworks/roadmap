@@ -1,0 +1,200 @@
+{
+    "$schema": "http://json-schema.org/schema",
+    "description": "A road map represents a high-level plan for a project or team.",
+    "type": "object",
+    "required": [
+        "title",
+        "authors",
+        "milestones"
+    ],
+    "properties": {
+        "title": {
+            "type": "string",
+            "description": "A brief title which describes this road map."
+        },
+        "description": {
+            "type": "string",
+            "description": "A markdown formatted description of what this road map represents and any additional context which may be useful to a reader."
+        },
+        "authors": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/Author"
+            }
+        },
+        "timeline": {
+            "type": "array",
+            "description": "The list of important dates which relate to this road map.",
+            "items": {
+                "$ref": "#/definitions/TimelineMarker"
+            }
+        },
+        "milestones": {
+            "type": "array",
+            "description": "The list of milestones which act as indicators of progress for this road map.",
+            "items": {
+                "$ref": "#/definitions/Milestone"
+            }
+        }
+    },
+    "definitions": {
+        "Author": {
+            "type": "object",
+            "description": "The details of an author responsible for this road map, should a reader have questions.",
+            "required": [
+                "name",
+                "contact"
+            ],
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "The full name of the author."
+                },
+                "contact": {
+                    "type": "string",
+                    "description": "The contact address for the author - usually their email, but may also be an IM handle or otherwise."
+                }
+            },
+            "examples": [
+                {
+                    "name": "John Doe",
+                    "contact": "john.doe@example.com"
+                }
+            ]
+        },
+        "TimelineMarker": {
+            "type": "object",
+            "description": "An important date which relates to this road map.",
+            "required": [
+                "date",
+                "title"
+            ],
+            "properties": {
+                "date": {
+                    "type": "string",
+                    "format": "date",
+                    "description": "The date that this timeline marker is associated with."
+                },
+                "title": {
+                    "type": "string",
+                    "description": "A brief name associated with this timeline marker to describe it."
+                },
+                "description": {
+                    "type": "string",
+                    "description": "A markdown formatted description of what this timeline marker represents, or additional context associated with it."
+                }
+            }
+        },
+        "Milestone": {
+            "type": "object",
+            "description": "An indicator of progress for this road map. Usually milestones are collections of deliverables which, when considered together, represent a shift in the value delivered by a team or project.",
+            "required": [
+                "title",
+                "deliverables"
+            ],
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "format": "hostname",
+                    "description": "The unique identifier associated with this milestone, if you wish to reference it for dependency purposes."
+                },
+                "title": {
+                    "type": "string",
+                    "description": "A brief name associated with this milestone to describe the value shift."
+                },
+                "description": {
+                    "type": "string",
+                    "description": "A markdown formatted description of what this milestone represents and, if appropriate, the justification for its presence and prioritization."
+                },
+                "dependencies": {
+                    "type": "array",
+                    "description": "The list of milestones which must be completed before work begins on this one.",
+                    "items": {
+                        "type": "string",
+                        "format": "hostname",
+                        "description": "The ID of a milestone which is a prerequisite for work to begin on the current milestone."
+                    },
+                    "default": []
+                },
+                "deliverables": {
+                    "type": "array",
+                    "description": "The list of deliverables which make up this milestone. Deliverables usually map to specific pieces of work which may be delegated to a member of your team.",
+                    "items": {
+                        "$ref": "#/definitions/Deliverable"
+                    }
+                }
+            },
+            "examples": [
+                {
+                    "id": "documentation",
+                    "title": "Documentation Website",
+                    "description": "Publish a documentation website for the project, with information that customers can use to understand how to use it.",
+                    "dependencies": ["prototype"],
+                    "deliverables": [
+                        {
+                            "title": "Setup Docs Repo",
+                            "description": "Create a documentation repository and configure the build tooling to generate and publish a website.",
+                            "requirement": "MUST",
+                            "state": "DOING"
+                        },
+                        {
+                            "title": "Getting Started Guide",
+                            "description": "Put together a getting started guide for new customers.",
+                            "requirement": "SHOULD",
+                            "state": "TODO"
+                        }
+                    ]
+                }
+            ]
+        },
+        "Deliverable": {
+            "type": "object",
+            "description": "A specific piece of work which may be delegated to a member of the team.",
+            "required": [
+                "title"
+            ],
+            "properties": {
+                "title": {
+                    "type": "string",
+                    "description": "A brief name describing this deliverable."
+                },
+                "description": {
+                    "type": "string",
+                    "description": "A markdown formatted description of what this deliverable entails and why it is necessary for this milestone."
+                },
+                "reference": {
+                    "type": "string",
+                    "format": "uri",
+                    "description": "A URI at which additional information about this deliverable may be found (whether that be documentation or a tracking ticket)."
+                },
+                "state": {
+                    "$ref": "#/definitions/State"
+                },
+                "requirement": {
+                    "$ref": "#/definitions/Requirement"
+                }
+            }
+        },
+        "State": {
+            "type": "string",
+            "description": "The state of an item on the road map.",
+            "enum": [
+                "TODO",
+                "DOING",
+                "DONE",
+                "SKIP"
+            ],
+            "default": "planned"
+        },
+        "Requirement": {
+            "type": "string",
+            "description": "An RFC2119 verb which describes how a specific requirement should be treated.",
+            "enum": [
+                "MUST",
+                "SHOULD",
+                "MAY"
+            ],
+            "default": "SHOULD"
+        }
+    }
+}
