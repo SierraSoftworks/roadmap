@@ -93,11 +93,6 @@
                 "deliverables"
             ],
             "properties": {
-                "id": {
-                    "type": "string",
-                    "format": "hostname",
-                    "description": "The unique identifier associated with this milestone, if you wish to reference it for dependency purposes."
-                },
                 "title": {
                     "type": "string",
                     "description": "A brief name associated with this milestone to describe the value shift."
@@ -105,16 +100,6 @@
                 "description": {
                     "type": "string",
                     "description": "A markdown formatted description of what this milestone represents and, if appropriate, the justification for its presence and prioritization."
-                },
-                "dependencies": {
-                    "type": "array",
-                    "description": "The list of milestones which must be completed before work begins on this one.",
-                    "items": {
-                        "type": "string",
-                        "format": "hostname",
-                        "description": "The ID of a milestone which is a prerequisite for work to begin on the current milestone."
-                    },
-                    "default": []
                 },
                 "deliverables": {
                     "type": "array",
@@ -126,10 +111,8 @@
             },
             "examples": [
                 {
-                    "id": "documentation",
                     "title": "Documentation Website",
                     "description": "Publish a documentation website for the project, with information that customers can use to understand how to use it.",
-                    "dependencies": ["prototype"],
                     "deliverables": [
                         {
                             "title": "Setup Docs Repo",

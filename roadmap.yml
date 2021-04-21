@@ -28,8 +28,7 @@ timeline:
       This is the scheduled date for the first demo of this project to a wider audience.
 
 milestones:
-  - id: planning
-    title: Design & Planning
+  - title: Design and Planning
     description: |
       The design and planning stage is where we're figuring out how this project should work and, broadly,
       what kind of information we want to show on our road maps.
@@ -47,10 +46,7 @@ milestones:
           We need to know what the road map file format looks like, so we'll get started with an example road
           map to kick the tyres.
 
-  - id: schema
-    title: Road Map Schema
-    dependencies:
-      - planning
+  - title: Road Map Schema
     description: |
       Once we know how we want a road map file to look, we should put together a schema for the file. This
       will allow us to document the file structure and provide a first class editing experience to people
@@ -59,7 +55,7 @@ milestones:
       - title: roadmap.schema.json
         description: |
           Put together a JSONSchema file describing the road map file format.
-        state: DOING
+        state: DONE
         requirement: MUST
       - title: Publish Schema
         reference: https://schemas.sierrasoftworks.com
@@ -68,10 +64,7 @@ milestones:
           so that people can reference it easily.
         requirement: MUST
 
-  - id: graphviz
-    title: GraphViz Renderer
-    dependencies:
-      - planning
+  - title: GraphViz Renderer
     description: |
       The first output format we would like to target with this project is GraphViz. It isn't necessarily
       the most beautiful or powerful output format, but it is a simple target to demonstrate functionality
@@ -86,12 +79,9 @@ milestones:
           DOT file which can then be rendered by any GraphViz renderer. This output format might only
           support a subset of the total Road Map schema's features initially.
         requirement: SHOULD
+        state: DONE
 
-  - id: docs-website
-    title: Documentation Website
-    dependencies:
-      - planning
-      - graphviz
+  - title: Documentation Website
     description: |
       The next step here is to put together a website explaining how to use road map. Initially this will
       be just a documentation website, but we should design with the expectation that we will be adding

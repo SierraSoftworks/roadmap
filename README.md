@@ -11,6 +11,20 @@ The goal here is to change that, by defining your road map in everyone's least
 loved markup language: YAML. An example road map might look something like the
 following.
 
+## Usage
+
+### GraphViz
+The easiest way to get started viewing your road map is to output a GraphViz DOT
+file which can be rendered using any GraphViz renderer, like
+[GraphViz Online](https://dreampuf.github.io/GraphvizOnline). To do so, you'll
+need Go installed on your machine and then you can simply run:
+
+```powershell
+go run github.com/SierraSoftworks/roadmap/tools/graphviz --in my-roadmap.yml -out my-roadmap.dot
+```
+
+Drop the DOT file into your GraphViz renderer of choice and you're good to go!
+
 ## Example
 
 ```yaml
