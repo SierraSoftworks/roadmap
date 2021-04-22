@@ -4,8 +4,6 @@ import (
 	"bytes"
 	"encoding/json"
 	"log"
-	"math/rand"
-	"regexp"
 	"text/template"
 
 	"github.com/SierraSoftworks/roadmap"
@@ -22,7 +20,6 @@ digraph Roadmap {
   label={{ .Title | json }};
   tooltip={{ .Description | json }};
   fontname="Arial";
-  compound=true;
   labelloc="t";
 
   node[style="filled",shape="rect",color="orange",fontname="Arial",fontsize=8];
@@ -35,11 +32,11 @@ digraph Roadmap {
 
   {{- range $index, $milestone := .Milestones -}}
   {{- with $milestone -}}
-  {{- $id := .Title | id }}
+  {{- $id := .ID }}
   
     {{ $id }}[label={{ .Title | json }},tooltip={{ .Description | json }}];
   {{- if gt $index 0 }}
-    {{ (index $root.Milestones (add $index -1)).Title | id }} -> {{ $id }};
+    {{ (index $root.Milestones (add $index -1)).ID }} -> {{ $id }};
   {{- else }}
     start -> {{ $id }};
   {{- end }}
@@ -50,8 +47,8 @@ digraph Roadmap {
   node[color="grey"];
   edge[weight=5,color="grey",penwidth=0.4,arrowsize=0.4,group="dependencies"];
 
-  {{ range .Milestones }}
-  {{- $id := .Title | id }}
+  {{- range .Milestones }}
+  {{- $id := .ID }}
 
   subgraph cluster_{{ $id }} {
 	label={{ .Title | json }};
@@ -60,10 +57,10 @@ digraph Roadmap {
 	penwidth=0.6;
 
 	# Deliverables for {{ $id }}
-	{{ range .Deliverables -}}
-	{{ .Title | id }}[label={{ .Title | json }},tooltip={{ .Description | json }},color="{{ .State | stateColor }}",labelhref={{ .Reference | json }}];
-	{{ .Title | id }} -> {{ $id }};
-	{{- end }}
+	{{- range .Deliverables }}
+	{{ .ID }}[label={{ .Title | json }},tooltip={{ .Description | json }},color="{{ .State | stateColor }}",labelhref={{ .Reference | json }}];
+	{{ .ID }} -> {{ $id }};
+	{{ end }}
   }
   {{ end }}
 }
@@ -71,16 +68,6 @@ digraph Roadmap {
 
 func render(r *roadmap.Roadmap) (string, error) {
 	tmpl := template.Must(template.New("roadmap").Funcs(template.FuncMap{
-		"newid": func() string {
-			b := make([]rune, 10)
-			for i := range b {
-				b[i] = idLetters[rand.Intn(len(idLetters))]
-			}
-			return string(b)
-		},
-		"id": func(title string) string {
-			return string(regexp.MustCompile("[^a-zA-Z0-9_]").ReplaceAll([]byte(title), []byte("_")))
-		},
 		"json": func(in string) string {
 			out, err := json.Marshal(in)
 			if err != nil {
