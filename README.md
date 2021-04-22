@@ -68,3 +68,5 @@ milestones:
       - title: Yacht
         reference: https://lmgtfy.app/?q=yacht&t=i
 ```
+
+![Example Rendered Roadmap](./docs/example_roadmap.svg)
