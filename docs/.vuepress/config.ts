@@ -1,4 +1,4 @@
-import { defineUserConfig, PageHeader, DefaultThemeOptions } from 'vuepress-vite'
+import { defineUserConfig, PageHeader, DefaultThemeOptions } from 'vuepress'
 import { path } from '@vuepress/utils'
 
 function htmlDecode(input: string): string {
