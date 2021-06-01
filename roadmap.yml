@@ -63,6 +63,7 @@ milestones:
           Publish the schema file on [schemas.sierrasoftworks.com](https://schemas.sierrasoftworks.com)
           so that people can reference it easily.
         requirement: MUST
+        state: DONE
 
   - title: GraphViz Renderer
     description: |
@@ -97,9 +98,52 @@ milestones:
 
           This should then be published somewhere (presumably roadmap.sierrasoftworks.com).
         requirement: SHOULD
+        state: DONE
 
       - title: Documentation
         description: |
           Let's write some documentation explaining how to use road map and publish that on the website.
         requirement: SHOULD
+        state: DONE
+
+  - title: Web Renderer
+    description: |
+      GraphViz is great, but being able to see things like the description of your deliverables and
+      their current state is something that most users are probably going to find quite useful. Pair that
+      with a need to make tinkering and experimentation easy and there are few things better than an
+      interactive website to show your road map.
+
+      The goal here is to produce something which is easy and pleasurable to use, which shows your road map
+      in a format which can be understood and makes interacting with it as low-fuss as possible.
+    deliverables:
+      - title: Web Renderer
+        state: DONE
+        requirement: MUST
+        description: |
+          The most important part of this milestone is the development of a web based renderer which can
+          present a road map file. This renderer is going to form the basis for our user flows, including
+          acting as a realtime preview for the editor and a final output for the repository viewer.
+      
+      - title: Editor
+        state: DONE
+        requirement: SHOULD
+        description: |
+          Making it easy for people to experiment with Road Map is going to be an important part of getting
+          them to use it. Providing an in-page editor which they can toy around with and instantly see results
+          is a great place to start.
+      
+      - title: Repo Viewer
+        state: TODO
+        requirement: SHOULD
+        description: |
+          Not everyone wants to host their own website to show off their road maps, so having a permalink which
+          will always show the latest road map from their repository (using the GitHub API) is probably a great
+          way to reduce friction.
+
+      - title: Renderer Package
+        state: TODO
+        requirement: MAY
+        description: |
+          Some teams might want to host a version of the renderer on their own website, in which case we should
+          provide them with a package that lets them use the Road Map web renderer from within their Vue application.
 

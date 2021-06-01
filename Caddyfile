@@ -1,0 +1,9 @@
+localhost:8081 
+root * docs/.vuepress/dist
+
+try_files {path} {path}/index.html index.html
+header /assets/*.js ?Content-Type application/javascript
+
+file_server {
+    index index.html
+}
