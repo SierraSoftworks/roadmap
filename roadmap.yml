@@ -133,12 +133,19 @@ milestones:
           is a great place to start.
       
       - title: Repo Viewer
-        state: TODO
+        state: DONE
         requirement: SHOULD
         description: |
           Not everyone wants to host their own website to show off their road maps, so having a permalink which
           will always show the latest road map from their repository (using the GitHub API) is probably a great
           way to reduce friction.
+
+      - title: File Viewer
+        state: TODO
+        requirement: SHOULD
+        description: |
+          For those poor souls who don't use GitHub as their source control provider of choice, we should let
+          users view a road map file by dragging and dropping it into the viewer.
 
       - title: Renderer Package
         state: TODO

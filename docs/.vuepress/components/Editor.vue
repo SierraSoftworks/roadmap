@@ -81,7 +81,6 @@ export default defineComponent({
     const roadmap = ref(defaultRoadmap);
     const error = ref(null);
     const parsed = computed(() => {
-      console.log("Parsing updated value");
       try {
         return (
           roadmap.value &&

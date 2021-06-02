@@ -64,7 +64,7 @@ milestones:
 
 #### GraphViz Chart
 
-This chart was generated using our [GraphViz tool](/tools/graphviz/README.md), which converts your `roadmap.yml` into a diagram
+This chart was generated using our [GraphViz tool](/tools/visualizations/graphviz/README.md), which converts your `roadmap.yml` into a diagram
 in DOT format. You can then render this diagram with GraphViz, or view it in an online tool like
 [GraphViz Online](https://dreampuf.github.io/GraphvizOnline).
 
@@ -74,5 +74,5 @@ go run github.com/SierraSoftworks/roadmap/tools/graphviz --in my-roadmap.yml
 
 <p style="text-align: center; margin: 2rem auto;">
 
-![Example Rendered Roadmap](../tools/graphviz/output.svg)
+![Example Rendered Roadmap](../tools/visualizations/graphviz/output.svg)
 </p>

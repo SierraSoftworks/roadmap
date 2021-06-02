@@ -46,8 +46,8 @@ export default defineUserConfig<DefaultThemeOptions>({
         link: "/guide/README.md",
       },
       {
-        text: "Viewer",
-        link: "/viewer/README.md",
+        text: "Editor",
+        link: "/editor/README.md",
       },
       {
         text: "Tools",
@@ -89,7 +89,9 @@ export default defineUserConfig<DefaultThemeOptions>({
           isGroup: true,
           text: 'Index',
           children: [
-            '/tools/graphviz/README.md',
+            '/tools/editors/web-editor/README.md',
+            '/tools/documentation/web-viewer/README.md',
+            '/tools/visualizations/graphviz/README.md',
           ]
         }
       ]

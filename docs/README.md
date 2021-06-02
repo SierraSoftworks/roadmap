@@ -2,8 +2,8 @@
 home: true
 
 actions:
-    - text: Viewer
-      link: /viewer/
+    - text: Editor
+      link: /editor/
     - text: Get Started
       link: /guide/
       type: secondary
