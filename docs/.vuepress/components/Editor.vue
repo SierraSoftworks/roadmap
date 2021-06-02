@@ -39,8 +39,7 @@ timeline:
     description: This is when we will start working on the project, get the team ready!
 
 milestones:
-  - id: team
-    title: Build the Team
+  - title: Build the Team
     description: We don't yet have anyone, that's not gonna work...
     deliverables:
       - title: Team Lead
@@ -60,11 +59,8 @@ milestones:
         state: SKIP
         requirement: MAY
 
-  - id: done
-    title: Finish the Project
+  - title: Finish the Project
     description: We don't need other milestones, do we?
-    dependencies:
-      - team
     deliverables:
       - title: MVP
         description: Who needs a polished product? Let's just ship the MVP and call it done.
