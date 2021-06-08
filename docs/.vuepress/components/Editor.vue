@@ -87,6 +87,7 @@ export default defineComponent({
     const error = ref(null);
     const parsed = computed(() => {
       try {
+        error.value = null
         return (
           roadmap.value &&
           yaml.load(roadmap.value, {
