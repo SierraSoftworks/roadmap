@@ -2,7 +2,9 @@
   <div class="timeline">
     <div class="timeline-item" v-for="item in sorted" :key="item.date" :data-date="item.date">
       <h4 class="timeline-item__title">{{ item.title }}</h4>
-      <div class="timeline-item__description">{{ item.description }}</div>
+      <div class="timeline-item__description">
+        <Markdown :value="item.description" />
+      </div>
     </div>
   </div>
 </template>

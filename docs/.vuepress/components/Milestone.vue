@@ -5,7 +5,7 @@
       <Markdown :value="milestone.description" />
     </div>
 
-    <Deliverables :deliverables="milestone.deliverables" />
+    <Deliverables :deliverables="milestone.deliverables || []" />
   </div>
 </template>
 
@@ -22,11 +22,11 @@ export default defineComponent({
 
   setup(props) {
     const milestone = toRef(props, "milestone");
-    const breakdown = computed(() => milestone.value.deliverables.reduce((counts, d) => ({
+    const breakdown = computed(() => milestone.value?.deliverables?.reduce((counts, d) => ({
         ...counts,
         [d.state]: (counts[d.state] || 0) + 1,
         total: (counts.total || 0) + 1
-    }), {}))
+    }), {}) || [])
     
     const progressLabel = computed(() => {
         if (!breakdown.value.total || breakdown.value.TODO === breakdown.value.total) return "TODO"

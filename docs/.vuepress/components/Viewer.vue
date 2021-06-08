@@ -6,7 +6,7 @@
       <div class="viewer-authors__title">Authored by</div>
       <div
         class="viewer-author"
-        v-for="author in roadmap.authors"
+        v-for="author in roadmap.authors || []"
         :key="author.name"
       >
         <h5>{{ author.name }}</h5>
@@ -18,7 +18,7 @@
 
     <div class="viewer-timeline">
       <h2>Important Dates</h2>
-      <Timeline :timeline="roadmap.timeline" />
+      <Timeline :timeline="roadmap.timeline || []" />
     </div>
 
     <div class="viewer-milestones">
@@ -26,7 +26,7 @@
 
       <Milestone
         :milestone="milestone"
-        v-for="milestone in roadmap.milestones"
+        v-for="milestone in roadmap.milestones || []"
         :key="milestone.title"
       />
     </div>
