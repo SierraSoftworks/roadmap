@@ -1,34 +1,36 @@
 <template>
   <div class="viewer">
-    <h1 class="viewer-title">{{ roadmap.title }}</h1>
+    <div class="roadmap" v-if="roadmap">
+      <h1 class="viewer-title">{{ roadmap?.title }}</h1>
 
-    <div class="viewer-authors">
-      <div class="viewer-authors__title">Authored by</div>
-      <div
-        class="viewer-author"
-        v-for="author in roadmap.authors || []"
-        :key="author.name"
-      >
-        <h5>{{ author.name }}</h5>
-        <p>{{ author.contact }}</p>
+      <div class="viewer-authors">
+        <div class="viewer-authors__title">Authored by</div>
+        <div
+          class="viewer-author"
+          v-for="author in roadmap?.authors || []"
+          :key="author.name"
+        >
+          <h5>{{ author.name }}</h5>
+          <p>{{ author.contact }}</p>
+        </div>
       </div>
-    </div>
 
-    <Markdown class="viewer-description" :value="roadmap.description" />
+      <Markdown class="viewer-description" :value="roadmap?.description" />
 
-    <div class="viewer-timeline">
-      <h2>Important Dates</h2>
-      <Timeline :timeline="roadmap.timeline || []" />
-    </div>
+      <div class="viewer-timeline">
+        <h2>Important Dates</h2>
+        <Timeline :timeline="roadmap?.timeline || []" />
+      </div>
 
-    <div class="viewer-milestones">
-      <h2>Key Milestones</h2>
+      <div class="viewer-milestones">
+        <h2>Key Milestones</h2>
 
-      <Milestone
-        :milestone="milestone"
-        v-for="milestone in roadmap.milestones || []"
-        :key="milestone.title"
-      />
+        <Milestone
+          :milestone="milestone"
+          v-for="milestone in roadmap?.milestones || []"
+          :key="milestone.title"
+        />
+      </div>
     </div>
   </div>
 </template>

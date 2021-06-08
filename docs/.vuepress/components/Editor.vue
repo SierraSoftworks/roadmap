@@ -11,7 +11,12 @@
       </v-ace-editor>
     </div>
     <div class="editor-preview">
-      <Viewer :roadmap="parsed" />
+      <Viewer v-if="!error" :roadmap="parsed" />
+      <div class="editor-error" v-if="error">
+        <h2>&#9888; Error</h2>
+        <p>{{ error.message }}</p>
+        <pre><code>{{ error.stack }}</code></pre>
+      </div>
     </div>
   </div>
 </template>
