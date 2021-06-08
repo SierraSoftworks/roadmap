@@ -13,6 +13,13 @@ Our GraphViz conversion tool is written in [Go](https://golang.org), so you'll n
 sure you've installed that on your machine. We recommend Go 1.13+ since it'll let you run
 the conversion tool without needing to clone the repo or do any manual building.
 
+Once you have Go installed, run the following to get the project and make the tool
+available to run.
+
+```sh
+go get github.com/SierraSoftworks/roadmap
+```
+
 ### Conversion
 To convert your `roadmap.yml` file into its DOT representation, try running the following
 command. It'll write the result to your terminal, but if you'd prefer
