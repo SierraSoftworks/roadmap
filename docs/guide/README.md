@@ -1,5 +1,5 @@
 # Introduction
-Road map aws borne out of the need to quickly describe our team's road maps
+Road map was borne out of the need to quickly describe our team's road maps
 in a visual and easy to understand fashion. Previously, we had used a combination
 of PowerPoint, Visio, LucidCharts and GraphViz to present this information - with
 each person doing their own thing. That doesn't scale particularly well and it

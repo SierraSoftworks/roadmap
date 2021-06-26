@@ -17,7 +17,8 @@ Once you have Go installed, run the following to get the project and make the to
 available to run.
 
 ```sh
-go get github.com/SierraSoftworks/roadmap
+# This installs the roadmap-graphviz tool in your Go binaries folder.
+go get github.com/SierraSoftworks/roadmap/tools/roadmap-graphviz
 ```
 
 ### Conversion
@@ -27,13 +28,13 @@ command. It'll write the result to your terminal, but if you'd prefer
 :::: code-group
 ::: code-group-item stdout
 ```sh
-go run github.com/SierraSoftworks/roadmap/tools/graphviz --in roadmap.yml
+roadmap-graphviz --in roadmap.yml
 ```
 :::
 
 ::: code-group-item file
 ```sh
-go run github.com/SierraSoftworks/roadmap/tools/graphviz --in roadmap.yml --out roadmap.dot
+roadmap-graphviz --in roadmap.yml --out roadmap.dot
 ```
 :::
 ::::
