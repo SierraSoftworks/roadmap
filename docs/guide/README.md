@@ -74,7 +74,7 @@ in DOT format. You can then render this diagram with GraphViz, or view it in an 
 [GraphViz Online](https://dreampuf.github.io/GraphvizOnline).
 
 ```powershell
-go run github.com/SierraSoftworks/roadmap/tools/graphviz --in my-roadmap.yml
+go run github.com/SierraSoftworks/roadmap/tools/roadmap-graphviz --in my-roadmap.yml
 ```
 
 <p style="text-align: center; margin: 2rem auto;">
