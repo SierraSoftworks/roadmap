@@ -21,7 +21,7 @@ Converts your `roadmap.yml` file into a GraphViz DOT format which can be easily 
 SVG, PNG and a range of other formats.
 
 ```sh
-go run github.com/SierraSoftworks/roadmap/tools/graphviz --in roadmap.yml
+go run github.com/SierraSoftworks/roadmap/tools/roadmap-graphviz --in roadmap.yml
 ```
 
 ## Documentation
