@@ -20,7 +20,11 @@ file which can be rendered using any GraphViz renderer, like
 need Go installed on your machine and then you can simply run:
 
 ```powershell
-go run github.com/SierraSoftworks/roadmap/tools/roadmap-graphviz --in my-roadmap.yml -out my-roadmap.dot
+# Install the tool
+go install github.com/SierraSoftworks/roadmap/tools/roadmap-graphviz@latest
+
+# Run the tool
+roadmap-graphviz --in my-roadmap.yml -out my-roadmap.dot
 ```
 
 Drop the DOT file into your GraphViz renderer of choice and you're good to go!
