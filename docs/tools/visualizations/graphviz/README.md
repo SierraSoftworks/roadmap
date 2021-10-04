@@ -18,7 +18,7 @@ available to run.
 
 ```sh
 # This installs the roadmap-graphviz tool in your Go binaries folder.
-go get github.com/SierraSoftworks/roadmap/tools/roadmap-graphviz
+go install github.com/SierraSoftworks/roadmap/tools/roadmap-graphviz@latest
 ```
 
 ### Conversion
