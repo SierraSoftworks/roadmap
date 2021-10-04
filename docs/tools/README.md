@@ -34,6 +34,20 @@ go install github.com/SierraSoftworks/roadmap/tools/roadmap-html@latest
 roadmap-html --in roadmap.yml --out roadmap.html
 ```
 
+#### [Markdown](/tools/visualizations/markdown/README.md)
+Converts your `roadmap.yml` file into a Markdown file which can be rendered by most Markdown
+rendering programs.
+
+```sh
+go install github.com/SierraSoftworks/roadmap/tools/roadmap-md@latest
+
+# Generate a full Markdown file
+roadmap-md --in roadmap.yml --out roadmap.md
+
+# Generate a simplified Markdown file (for GitHub comments/issues etc)
+roadmap-md --int roadmap.yml --out roadmap.md --simple
+```
+
 ## Documentation
 Sometimes you want to be able to convert your road map into a human readable document. This might
 be so that you can display it on a website, drop it into a planning system or simply to make it a

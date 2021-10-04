@@ -11,7 +11,7 @@ import (
 	"github.com/pkg/errors"
 )
 
-// go:embed roadmap.dot
+//go:embed roadmap.dot
 var roadmapTemplate string
 
 func render(r *roadmap.Roadmap) (string, error) {
@@ -46,7 +46,7 @@ func render(r *roadmap.Roadmap) (string, error) {
 	buf := bytes.NewBufferString("")
 
 	if err := tmpl.Execute(buf, r); err != nil {
-		return "", errors.Wrap(err, "graphviz: could not generate roadmap from template")
+		return "", errors.Wrap(err, "roadmap-graphviz: could not generate roadmap from template")
 	}
 
 	return buf.String(), nil

@@ -43,11 +43,11 @@ func TestRender(t *testing.T) {
 		},
 	}
 
-	dot, err := render(r)
+	html, err := render(r)
 	require.NoError(t, err, "no error should have been returned")
 
-	t.Log(dot)
+	t.Log(html)
 
-	assert.Contains(t, dot, "label=\"Road Map Title\";", "the roadmap title should be set")
-	assert.Contains(t, dot, "tooltip=\"Road Map Description\";", "the roadmap description should be set")
+	assert.Contains(t, html, "<h1 class=\"roadmap-title\"><p>Road Map Title</p>\n</h1>", "the roadmap title should be set")
+	assert.Contains(t, html, "<p>Road Map Description</p>", "the roadmap description should be set")
 }

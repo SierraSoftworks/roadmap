@@ -49,7 +49,7 @@ func render(r *roadmap.Roadmap, t string) (string, error) {
 	buf := bytes.NewBufferString("")
 
 	if err := tmpl.Execute(buf, r); err != nil {
-		return "", errors.Wrap(err, "graphviz: could not generate roadmap from template")
+		return "", errors.Wrap(err, "roadmap-md: could not generate roadmap from template")
 	}
 
 	return buf.String(), nil
