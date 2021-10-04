@@ -47,7 +47,7 @@
 
             <div class="timeline">
                 {{ range $i, $m := .Milestones }}
-                <div id="milestone-{{ $m.ID }}" class="timeline-item" data-date="M{{ $i }}">
+                <div id="milestone-{{ $m.ID }}" class="timeline-item" data-date="M{{ add $i 1 }}">
                     <h3 class="timeline-item__title">{{ $m.Title | markdown }}</h3>
                     <div class="timeline-item_description">
                         {{ .Description | markdown }}
