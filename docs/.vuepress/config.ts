@@ -92,6 +92,7 @@ export default defineUserConfig<DefaultThemeOptions>({
             '/tools/editors/web-editor/README.md',
             '/tools/documentation/web-viewer/README.md',
             '/tools/visualizations/graphviz/README.md',
+            '/tools/visualizations/html/README.md',
           ]
         }
       ]

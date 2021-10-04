@@ -4,14 +4,18 @@ import (
 	"bytes"
 	_ "embed"
 	"encoding/json"
+	"html/template"
 	"log"
-	"text/template"
 
 	"github.com/SierraSoftworks/roadmap"
+	"github.com/gomarkdown/markdown"
 	"github.com/pkg/errors"
 )
 
-// go:embed roadmap.dot
+//go:embed page.css
+var roadmapCss string
+
+//go:embed roadmap.html
 var roadmapTemplate string
 
 func render(r *roadmap.Roadmap) (string, error) {
@@ -24,22 +28,14 @@ func render(r *roadmap.Roadmap) (string, error) {
 
 			return string(out)
 		},
-		"stateColor": func(state string) string {
-			switch state {
-			case "TODO":
-				return "grey"
-			case "DOING":
-				return "lightblue"
-			case "DONE":
-				return "palegreen"
-			case "SKIP":
-				return "pink"
-			default:
-				return "grey"
-			}
+		"markdown": func(in string) template.HTML {
+			return template.HTML(markdown.ToHTML([]byte(in), nil, nil))
 		},
 		"add": func(a, b int) int {
 			return a + b
+		},
+		"stylesheet": func() template.CSS {
+			return template.CSS(roadmapCss)
 		},
 	}).Parse(roadmapTemplate))
 

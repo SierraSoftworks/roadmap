@@ -1,0 +1,76 @@
+{{ $root := . -}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ .Title }}</title>
+    <style>
+        {{ stylesheet }}
+    </style>
+</head>
+<body>
+    <section role="document">
+        <section role="doc-introduction">
+            <h1 class="roadmap-title">{{ .Title | markdown }}</h1>
+
+            <div class="authors">
+                <div class="authors_title">Authored by</div>
+
+                {{ range .Authors }}
+                <div class="author">
+                    <h5>{{ .Name }}</h5>
+                    <p>{{ .Contact }}</p>
+                </div>
+                {{ end }}
+            </div>
+            
+            {{ .Description | markdown }}
+        </section>
+
+        <section role="doc-notice">
+            <h2 class="section-title">Important Dates</h2>
+
+            <div class="timeline">
+                {{ range .Timeline }}
+                <div class="timeline-item" data-date="{{ .Date.Format "2006-01-02" }}">
+                    <h3 class="timeline-item__title">{{ .Title | markdown }}</h3>
+                    <div class="timeline-item__description">{{ .Description | markdown }}</div>
+                </div>
+                {{ end }}
+            </div>
+        </section>
+        
+        <section role="main">
+            <h2 class="section-title">Milestones</h2>
+
+            <div class="timeline">
+                {{ range $i, $m := .Milestones }}
+                <div id="milestone-{{ $m.ID }}" class="timeline-item" data-date="M{{ $i }}">
+                    <h3 class="timeline-item__title">{{ $m.Title | markdown }}</h3>
+                    <div class="timeline-item_description">
+                        {{ .Description | markdown }}
+                    
+                        {{ range $m.Deliverables }}
+                        <div id="milestone-{{ $m.ID }}-deliverable-{{ .ID }}" class="card card-{{ .State }}">
+                            <h4 class="card-title">
+                                <p class="card-state">{{ .State }}</p>
+                                {{ .Title | markdown }}
+                            </h4>
+                            {{ .Description | markdown }}
+
+                            {{ with .Reference }}
+                            <a class="card-link" href="{{ . }}">Read more &rarr;</a>
+                            {{ end }}
+                        </div>
+                        {{ end }}
+                    </div>
+                </div>
+                {{ end }}
+            </div>
+        </section>
+    </section>
+    
+</body>
+</html>

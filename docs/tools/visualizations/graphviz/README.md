@@ -10,7 +10,7 @@ textual graph description format.
 ## Usage
 ### Prerequisites
 Our GraphViz conversion tool is written in [Go](https://golang.org), so you'll need to make
-sure you've installed that on your machine. We recommend Go 1.13+ since it'll let you run
+sure you've installed that on your machine. We recommend Go 1.16+ since it'll let you run
 the conversion tool without needing to clone the repo or do any manual building.
 
 Once you have Go installed, run the following to get the project and make the tool
@@ -23,7 +23,7 @@ go install github.com/SierraSoftworks/roadmap/tools/roadmap-graphviz@latest
 
 ### Conversion
 To convert your `roadmap.yml` file into its DOT representation, try running the following
-command. It'll write the result to your terminal, but if you'd prefer
+command. It'll write the result to your terminal, but if you'd prefer, you can write it to a file as well.
 
 :::: code-group
 ::: code-group-item stdout
