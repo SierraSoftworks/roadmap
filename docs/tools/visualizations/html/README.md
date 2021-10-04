@@ -14,7 +14,7 @@ available to run.
 
 ```sh
 # This installs the roadmap-html tool in your Go binaries folder.
-go get github.com/SierraSoftworks/roadmap/tools/roadmap-html
+go install github.com/SierraSoftworks/roadmap/tools/roadmap-html@latest
 ```
 
 ### Conversion
