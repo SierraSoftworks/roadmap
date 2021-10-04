@@ -11,10 +11,13 @@ import (
 	"github.com/pkg/errors"
 )
 
-//go:embed roadmap.md
-var roadmapTemplate string
+//go:embed roadmap.advanced.md
+var roadmapTemplateAdvanced string
 
-func render(r *roadmap.Roadmap) (string, error) {
+//go:embed roadmap.basic.md
+var roadmapTemplateBasic string
+
+func render(r *roadmap.Roadmap, t string) (string, error) {
 	tmpl := template.Must(template.New("roadmap").Funcs(template.FuncMap{
 		"json": func(in string) string {
 			out, err := json.Marshal(in)
@@ -41,7 +44,7 @@ func render(r *roadmap.Roadmap) (string, error) {
 		"add": func(a, b int) int {
 			return a + b
 		},
-	}).Parse(roadmapTemplate))
+	}).Parse(t))
 
 	buf := bytes.NewBufferString("")
 

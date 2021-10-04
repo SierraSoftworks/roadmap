@@ -29,6 +29,10 @@ func main() {
 				Required:  false,
 				TakesFile: true,
 			},
+			&cli.BoolFlag{
+				Name:  "simple",
+				Usage: "Emits simplified Markdown for maximum compatibility.",
+			},
 		},
 		Action: func(c *cli.Context) error {
 			f, err := ioutil.ReadFile(c.String("input"))
@@ -41,7 +45,12 @@ func main() {
 				return err
 			}
 
-			dot, err := render(r)
+			template := roadmapTemplateAdvanced
+			if c.Bool("simple") {
+				template = roadmapTemplateBasic
+			}
+
+			dot, err := render(r, template)
 			if err != nil {
 				return err
 			}
