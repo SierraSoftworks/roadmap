@@ -50,6 +50,7 @@
 <span style="float: right; margin: 0;">{{ .State }}</span>
 
 {{ .Title }}
+{{ with .Requirement }}<span style="display: inline; font-size: 90%; padding: 3px 5px; border-radius: 4px; background-color: {{ . | requirementColor }}; color: white;"> {{ . }}</span>{{ end }}
 </h4>
 
 {{ .Description }}

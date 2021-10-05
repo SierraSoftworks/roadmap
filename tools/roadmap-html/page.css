@@ -177,3 +177,25 @@ a:hover, a:focus {
     bottom: 5px;
     font-size: 70%;
 }
+
+.tablet {
+    display: inline;
+    font-size: 90%;
+    padding: 3px 5px;
+    border-radius: 4px;
+    background-color: #888;
+    color: white; 
+    margin-right: 10px;
+}
+
+.tablet-MUST {
+    background-color: #E06446;
+}
+
+.tablet-SHOULD {
+    background-color: #E0AF2F;   
+}
+
+.tablet-MAY {
+    background-color: #3ABDE0;  
+}

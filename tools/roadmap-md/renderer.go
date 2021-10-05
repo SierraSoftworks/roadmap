@@ -41,6 +41,18 @@ func render(r *roadmap.Roadmap, t string) (string, error) {
 				return "#aaa"
 			}
 		},
+		"requirementColor": func(requirement string) string {
+			switch requirement {
+			case "MUST":
+				return "#E06446"
+			case "SHOULD":
+				return "#E0AF2F"
+			case "MAY":
+				return "#3ABDE0"
+			default:
+				return "#888"
+			}
+		},
 		"add": func(a, b int) int {
 			return a + b
 		},

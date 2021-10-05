@@ -21,7 +21,7 @@
 {{ $m.Description }}
 
 {{ range $di, $d := $m.Deliverables }}
-#### **{{ .State }}** | {{ with $d.Reference }}[{{ $d.Title }}]({{ . }}){{ else }}{{ $d.Title }}{{ end }}
+#### **{{ .Requirement }}::{{ .State }}** | {{ with $d.Reference }}[{{ $d.Title }}]({{ . }}){{ else }}{{ $d.Title }}{{ end }}
 {{ .Description }}
 {{ end }}
 {{ end }}

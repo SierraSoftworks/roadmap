@@ -13,7 +13,7 @@
 <body>
     <section role="document">
         <section role="doc-introduction">
-            <h1 class="roadmap-title">{{ .Title | markdown }}</h1>
+            <h1 class="roadmap-title">{{ .Title }}</h1>
 
             <div class="authors">
                 <div class="authors_title">Authored by</div>
@@ -35,7 +35,7 @@
             <div class="timeline">
                 {{ range .Timeline }}
                 <div class="timeline-item" data-date="{{ .Date.Format "2006-01-02" }}">
-                    <h3 class="timeline-item__title">{{ .Title | markdown }}</h3>
+                    <h3 class="timeline-item__title">{{ .Title }}</h3>
                     <div class="timeline-item__description">{{ .Description | markdown }}</div>
                 </div>
                 {{ end }}
@@ -48,7 +48,7 @@
             <div class="timeline">
                 {{ range $i, $m := .Milestones }}
                 <div id="milestone-{{ $m.ID }}" class="timeline-item" data-date="M{{ add $i 1 }}">
-                    <h3 class="timeline-item__title">{{ $m.Title | markdown }}</h3>
+                    <h3 class="timeline-item__title">{{ $m.Title }}</h3>
                     <div class="timeline-item_description">
                         {{ .Description | markdown }}
                     
@@ -56,7 +56,8 @@
                         <div id="milestone-{{ $m.ID }}-deliverable-{{ .ID }}" class="card card-{{ .State }}">
                             <h4 class="card-title">
                                 <p class="card-state">{{ .State }}</p>
-                                {{ .Title | markdown }}
+                                {{ .Title }}
+                                {{ with .Requirement }}<span class="tablet tablet-{{ . }}">{{ . }}</span>{{ end }}
                             </h4>
                             {{ .Description | markdown }}
 
