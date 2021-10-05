@@ -1,5 +1,7 @@
 <template>
-    <pre><code>{{ schema }}</code></pre>
+    <div class="language-json ext-json">
+        <pre class="language-json"><code class="dynamic-code">{{ schema }}</code></pre>
+    </div>
 </template>
 
 <script lang="ts">
@@ -33,5 +35,7 @@ export default defineComponent({
 </script>
 
 <style scoped>
-   
+.dynamic-code {
+    color: var(--c-text-lighter);
+}
 </style>
