@@ -33,6 +33,13 @@ timeline:
     title: Project Start
     description: This is when we will start working on the project, get the team ready!
 
+objectives:
+  - title: Market Dominance
+    description: |
+      Provide actionable analytics drawn from big data to improve our brand identity in
+      the advertainment sector, maximizing clickbait and establishing ourselves as a disruptor
+      in this industry.
+
 milestones:
   - title: Build the Team
     description: We don't yet have anyone, that's not gonna work...
@@ -67,14 +74,32 @@ milestones:
 
 ### Outputs
 
-#### GraphViz Chart
+#### Markdown
+A great way to visualize your road map once you have it prepared is by generating a markdown file to represent
+it. This can be done using our [Markdown tool](/tools/documentation/markdown/README.md), which converts your
+`roadmap.yml` file into a gorgeously laid out Markdown file for human consumption.
 
+
+```powershell
+go install github.com/SierraSoftworks/roadmap/tools/roadmap@latest
+
+roadmap render markdown --in my-roadmap.yml
+```
+
+<p style="text-align: center; margin: 2rem auto;">
+
+![Example Rendered Roadmap](./example_md.png)
+</p>
+
+#### GraphViz Chart
 This chart was generated using our [GraphViz tool](/tools/visualizations/graphviz/README.md), which converts your `roadmap.yml` into a diagram
 in DOT format. You can then render this diagram with GraphViz, or view it in an online tool like
 [GraphViz Online](https://dreampuf.github.io/GraphvizOnline).
 
 ```powershell
-go run github.com/SierraSoftworks/roadmap/tools/roadmap-graphviz --in my-roadmap.yml
+go install github.com/SierraSoftworks/roadmap/tools/roadmap@latest
+
+roadmap render graphviz --in my-roadmap.yml
 ```
 
 <p style="text-align: center; margin: 2rem auto;">

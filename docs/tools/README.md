@@ -25,6 +25,11 @@ go install github.com/SierraSoftworks/roadmap/tools/roadmap-graphviz@latest
 roadmap-graphviz --in roadmap.yml
 ```
 
+## Documentation
+Sometimes you want to be able to convert your road map into a human readable document. This might
+be so that you can display it on a website, drop it into a planning system or simply to make it a
+bit easier to read. These tools are designed to help with that.
+
 #### [HTML](/tools/visualizations/html/README.md)
 Converts your `roadmap.yml` file into a static HTML file which can be easily viewed in most
 web browsers.
@@ -47,11 +52,6 @@ roadmap-md --in roadmap.yml --out roadmap.md
 # Generate a simplified Markdown file (for GitHub comments/issues etc)
 roadmap-md --int roadmap.yml --out roadmap.md --simple
 ```
-
-## Documentation
-Sometimes you want to be able to convert your road map into a human readable document. This might
-be so that you can display it on a website, drop it into a planning system or simply to make it a
-bit easier to read. These tools are designed to help with that.
 
 #### [Web Viewer](/tools/website/README.md)
 The Road Map website includes a viewer which allows you to visualize your road map directly

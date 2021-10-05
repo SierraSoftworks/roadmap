@@ -87,13 +87,25 @@ export default defineUserConfig<DefaultThemeOptions>({
         },
         {
           isGroup: true,
-          text: 'Index',
+          text: 'Editors',
           children: [
             '/tools/editors/web-editor/README.md',
-            '/tools/documentation/web-viewer/README.md',
+          ]
+        },
+        {
+          isGroup: true,
+          text: 'Visualizations',
+          children: [
             '/tools/visualizations/graphviz/README.md',
-            '/tools/visualizations/html/README.md',
-            '/tools/visualizations/markdown/README.md',
+          ]
+        },
+        {
+          isGroup: true,
+          text: 'Documentation',
+          children: [
+            '/tools/documentation/html/README.md',
+            '/tools/documentation/markdown/README.md',
+            '/tools/documentation/web-viewer/README.md',
           ]
         }
       ]

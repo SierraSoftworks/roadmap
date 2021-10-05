@@ -29,6 +29,13 @@
                 "$ref": "#/definitions/TimelineMarker"
             }
         },
+        "objectives": {
+            "type": "array",
+            "description": "The list of objectives which the team is working towards over the course of this road map.",
+            "items": {
+                "$ref": "#/definitions/Objective"
+            }
+        },
         "milestones": {
             "type": "array",
             "description": "The list of milestones which act as indicators of progress for this road map.",
@@ -84,6 +91,26 @@
                     "description": "A markdown formatted description of what this timeline marker represents, or additional context associated with it."
                 }
             }
+        },
+        "Objective": {
+            "type": "object",
+            "description": "An objective describes a high level goal for the team. It is usually something that will be worked towards over several milestones and might not have a clear definition of done.",
+            "properties": {
+                "title": {
+                    "type": "string",
+                    "description": "A brief name associated with this objective which describes the intended outcome."
+                },
+                "description": {
+                    "type": "string",
+                    "description": "A markdown formatted description of what this objective represents and how it influences the direction that the team is moving in."
+                }
+            },
+            "examples": [
+                {
+                    "title": "Our users love the documentation we provide",
+                    "description": "Great documentation is critical to the adoption of our project and is an integral part of everything we introduce."
+                }
+            ]
         },
         "Milestone": {
             "type": "object",

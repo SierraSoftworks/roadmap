@@ -52,6 +52,13 @@ timeline:
     title: Project Start
     description: This is when we will start working on the project, get the team ready!
 
+objectives:
+  - title: Market Dominance
+    description: |
+      Provide actionable analytics drawn from big data to improve our brand identity in
+      the advertainment sector, maximizing clickbait and establishing ourselves as a disruptor
+      in this industry.
+
 milestones:
   - id: team
     title: Build the Team

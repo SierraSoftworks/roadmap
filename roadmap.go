@@ -2,13 +2,26 @@ package roadmap
 
 import (
 	"crypto/sha256"
+	_ "embed"
+	"encoding/json"
 	"fmt"
 	"regexp"
+	"strings"
 	"time"
 
 	"github.com/pkg/errors"
+	"github.com/santhosh-tekuri/jsonschema/v5"
 	"gopkg.in/yaml.v3"
 )
+
+//go:embed roadmap.schema.json
+var roamdapSchema string
+
+// Schema will return the raw JSON Schema used to validate a road map file
+// for this version of the road map library.
+func Schema() string {
+	return roamdapSchema
+}
 
 // Parse will convert a provided input buffer into a roadmap structure.
 func Parse(in []byte) (*Roadmap, error) {
@@ -38,6 +51,10 @@ type Roadmap struct {
 	// about the road map arise in future.
 	Authors []*Author `json:"authors,omitempty"`
 
+	// The Objectives list contains the high level goals that the team is working towards
+	// and should inform both the content and prioritization of deliverables in each milestone.
+	Objectives []*Objective `json:"objectives,omitempty"`
+
 	// The Timeline lists important dates which are of relevance to the execution of this
 	// road map. They are intentionally separated from milestones as we expect that milestones
 	// are executed in sequence and might be delayed or accelerated based on external factors.
@@ -47,6 +64,38 @@ type Roadmap struct {
 	// to visualize where they are on the road map without being overly constrained to the
 	// specific execution.
 	Milestones []*Milestone `json:"milestones,omitempty"`
+}
+
+// Validate will check whether the provided road map is valid according to the embedded
+// JSON Schema.
+func (r *Roadmap) Validate() error {
+	compiler := jsonschema.NewCompiler()
+	compiler.Draft = jsonschema.Draft2020
+
+	compiler.AddResource("roadmap.schema.json", strings.NewReader(Schema()))
+
+	schema, err := compiler.Compile("roadmap.schema.json")
+	if err != nil {
+		return err
+	}
+
+	j, err := json.Marshal(r)
+	if err != nil {
+		return err
+	}
+
+	var raw map[string]interface{}
+	err = json.Unmarshal(j, &raw)
+	if err != nil {
+		return err
+	}
+
+	err = schema.Validate(raw)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
 
 func (r *Roadmap) ensureDefaults() {
@@ -135,6 +184,22 @@ func (m *Milestone) ensureDefaults() {
 	for _, d := range m.Deliverables {
 		d.ensureDefaults()
 	}
+}
+
+// An Objective describes a high level goal for the team. It is usually something that
+// will be worked towards over several milestones and might not have a clear definition of done.
+type Objective struct {
+	// The Title provides a brief name for this objective.
+	Title string `json:"title"`
+
+	// The Description is a markdown formatted body of text that which provides additional
+	// context on the objective.
+	Description string `json:"description,omitempty"`
+}
+
+// ID returns a deterministic identifier for this deliverable which is based on its title and reference
+func (o *Objective) ID() string {
+	return id(o.Title)
 }
 
 // A Deliverable is a concrete task which may be delivered as part of a broader milestone.
