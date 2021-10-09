@@ -4,7 +4,7 @@
     <TargetFramework>net472</TargetFramework>
     <IsPackable>true</IsPackable>
     <PackageId>DocFX.Plugins.Roadmap</PackageId>
-    <Authors>notheotherben</Authors>
+    <Authors>bpannell</Authors>
     <Title>Roadmap DocFX Plugin</Title>
     <Description>A DocFX plugin which allows you to visualize your https://roadmap.sierrasoftworks.com.</Description>
     <Copyright>Copyright Sierra Softworks 2021</Copyright>
