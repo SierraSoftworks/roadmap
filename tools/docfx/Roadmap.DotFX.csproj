@@ -1,0 +1,46 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <IsPackable>true</IsPackable>
+    <PackageId>DocFX.Plugins.Roadmap</PackageId>
+    <Authors>notheotherben</Authors>
+    <Title>Roadmap DocFX Plugin</Title>
+    <Description>A DocFX plugin which allows you to visualize your https://roadmap.sierrasoftworks.com.</Description>
+    <Copyright>Copyright Sierra Softworks 2021</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://roadmap.sierrasoftworks.com</PackageProjectUrl>
+    <Tags>docfx</Tags>
+    <RepositoryUrl>https://github.com/SierraSoftworks/roadmap</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryBranch>main</RepositoryBranch>
+    <NoWarn>$(NoWarn);NU5100</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Handlebars.Net" Version="2.0.9" />
+    <PackageReference Include="markdig" Version="0.20.0" />
+    <PackageReference Include="Microsoft.Composition" Version="1.0.31" />
+    <PackageReference Include="Microsoft.DocAsCode.Common" Version="2.58.4" />
+    <PackageReference Include="Microsoft.DocAsCode.Plugins" Version="2.58.4" />
+    <PackageReference Include="Nerdbank.GitVersioning" Version="3.4.240">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="System.Collections.Immutable" Version="5.0.0" />
+  </ItemGroup>
+
+  <!-- Templates -->
+  <ItemGroup>
+    <EmbeddedResource Include="roadmap.css" />
+    <EmbeddedResource Include="roadmap.html.handlebars" />
+  </ItemGroup>
+
+  <!-- Plugin Package -->
+  <ItemGroup>
+    <Content Include="$(OutputPath)\*.dll">
+      <Pack>true</Pack>
+      <PackagePath>content\plugins\</PackagePath>
+    </Content>
+  </ItemGroup>
+</Project>

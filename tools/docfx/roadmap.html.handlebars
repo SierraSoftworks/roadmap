@@ -1,0 +1,70 @@
+ <style>
+    {{ stylesheet }}
+</style>
+<section class="roadmap" role="document">
+    <section role="doc-introduction">
+        <h1 class="roadmap-title">{{ roadmap.Title }}</h1>
+
+        <div class="authors">
+            <div class="authors_title">Authored by</div>
+
+            {{#each roadmap.Authors}}
+            <div class="author">
+                <h5>{{ this.Name }}</h5>
+                <p>{{ this.Contact }}</p>
+            </div>
+            {{/each}}
+        </div>
+        
+        {{markdown roadmap.Description _model}}
+    </section>
+
+    <section role="doc-notice">
+        <h2 class="section-title">Important Dates</h2>
+
+        <div class="timeline">
+            {{#each roadmap.Timeline}}
+            <div class="timeline-item" data-date="{{ this.Date }}">
+                <h3 class="timeline-item__title">{{ this.Title }}</h3>
+                <div class="timeline-item__description">{{markdown this.Description ../_model}}</div>
+            </div>
+            {{/each}}
+        </div>
+    </section>
+    
+    <section role="main">
+        <h2 class="section-title">Objectives</h2>
+        {{#each roadmap.Objectives }}
+        <h3 class="section-subtitle">{{ this.Title }}</h3>
+        {{markdown this.Description ../_model}}
+        {{/each}}
+
+        <h2 class="section-title">Milestones</h2>
+
+        <div class="timeline">
+            {{#each roadmap.Milestones}}
+            <div id="milestone-{{ this.ID }}" class="timeline-item" data-date="M{{ add @index 1 }}">
+                <h3 class="timeline-item__title section-subtitle">{{ this.Title }}</h3>
+                <div class="timeline-item_description">
+                    {{markdown this.Description ../_model}}
+                
+                    {{#each this.Deliverables}}
+                    <div id="deliverable-{{ this.ID }}" class="card card-{{ this.State }}">
+                        <h4 class="card-title">
+                            <p class="card-state">{{ this.State }}</p>
+                            {{ this.Title }}
+                            {{#with this.Requirement}}<span class="tablet tablet-{{ this }}">{{ this }}</span>{{/with}}
+                        </h4>
+                        {{markdown this.Description ../../_model}}
+
+                        {{#with this.Reference}}
+                        <a class="card-link" href="{{ this }}">Read more &rarr;</a>
+                        {{/with}}
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </section>
+</section>

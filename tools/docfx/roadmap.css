@@ -1,0 +1,172 @@
+.roadmap h1.roadmap-title {
+    font-size: 32px;
+}
+
+.roadmap h2.section-title {
+    font-size: 28px;
+}
+
+.roadmap .authors {
+    display: flex;
+    flex-direction: row;
+    background: rgba(200,200,200,.15);
+    margin-bottom: 2rem;
+    padding: 1rem;
+    border-radius: 6px;
+    align-items: center;
+}
+
+.roadmap .authors_title {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: .9rem;
+    line-height: 1.8rem;
+    opacity: .6;
+}
+
+.roadmap .author {
+    margin-left: 1rem;
+    padding-left: 1rem;
+    border-left: 1px solid rgba(200,200,200,.5);
+}
+
+.roadmap .author h5 {
+    font-size: 1rem;
+    margin: 0;
+}
+
+.roadmap .author p {
+    font-size: .8rem;
+    margin: 0;
+}
+
+.roadmap .timeline {
+    border-left: 4px solid gray;
+    border-bottom-right-radius: 4px;
+    border-top-right-radius: 4px;
+    background: rgba(200,200,200,.1);
+    margin: 2rem auto;
+        margin-left: auto;
+    padding: 1rem 2rem;
+    position: relative;
+    text-align: center;
+    margin-left: 7rem;
+}
+
+.roadmap .timeline-item {
+    text-align: left;
+    position: relative;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+}
+
+.roadmap .timeline-item::before {
+    position: absolute;
+    display: block;
+    left: -10rem;
+    line-height: 25px;
+    content: attr(data-date);
+    text-align: right;
+    font-size: .9rem;
+    font-weight: 700;
+    opacity: .7;
+    min-width: 6rem;
+}
+
+.roadmap .timeline-item::after {
+    position: absolute;
+    display: block;
+    content: '';
+    box-shadow: 0 0 0 4px gray;
+    left: -28px;
+    background: #444;
+    border-radius: 50%;
+    height: 11px;
+    width: 11px;
+    top: 8px;
+}
+
+.roadmap .timeline-item__title {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 20px;
+    line-height: 25px;
+}
+
+.roadmap .card {
+    position: relative;
+    border-radius: 5px;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+    /* border: 1px solid #ccc; */
+    background-color: white;
+    padding: 10px 20px;
+    margin-bottom: 2rem;
+}
+
+.roadmap .card::before {
+    position: absolute;
+    display: block;
+    content: '';
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 8px;
+    border-radius: 5px 0 0 5px;
+}
+
+.roadmap .card-TODO::before {
+    background-color: #aaa;
+}
+
+.roadmap .card-DOING::before {
+    background-color: #63B2EB;
+}
+
+.roadmap .card-DONE::before {
+    background-color: #3EAF7C;
+}
+
+.roadmap .card-SKIP::before {
+    background-color: #F65BD2;
+}
+
+.roadmap .card-state {
+    margin: 0;
+    float: right;
+    opacity: 0.5;
+    text-transform: lowercase;
+}
+
+.roadmap .card-title {
+    margin-top: 0;
+    font-size: 15px;
+}
+
+.roadmap .card-link {
+    position: absolute;
+    right: 10px;
+    bottom: 5px;
+    font-size: 70%;
+}
+
+.roadmap .tablet {
+    display: inline;
+    font-size: 60%;
+    padding: 3px 5px;
+    border-radius: 4px;
+    background-color: #888;
+    color: white; 
+    margin-right: 10px;
+}
+
+.roadmap .tablet-MUST {
+    background-color: #E06446;
+}
+
+.roadmap .tablet-SHOULD {
+    background-color: #E0AF2F;   
+}
+
+.roadmap .tablet-MAY {
+    background-color: #3ABDE0;  
+}

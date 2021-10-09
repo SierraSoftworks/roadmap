@@ -63,14 +63,12 @@ export default defineUserConfig<DefaultThemeOptions>({
     sidebar: {
       '/guide/': [
         {
-          isGroup: true,
           text: "Getting Started",
           children: [
             '/guide/README.md',
           ]
         },
         {
-          isGroup: true,
           text: "Advanced",
           children: [
             '/guide/advanced/schema.md',
@@ -79,30 +77,27 @@ export default defineUserConfig<DefaultThemeOptions>({
       ],
       '/tools/': [
         {
-          isGroup: true,
           text: 'Tools',
           children: [
             '/tools/README.md',
           ]
         },
         {
-          isGroup: true,
           text: 'Editors',
           children: [
             '/tools/editors/web-editor/README.md',
           ]
         },
         {
-          isGroup: true,
           text: 'Visualizations',
           children: [
             '/tools/visualizations/graphviz/README.md',
           ]
         },
         {
-          isGroup: true,
           text: 'Documentation',
           children: [
+            '/tools/documentation/docfx/README.md',
             '/tools/documentation/html/README.md',
             '/tools/documentation/markdown/README.md',
             '/tools/documentation/web-viewer/README.md',

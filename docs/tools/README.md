@@ -30,7 +30,14 @@ Sometimes you want to be able to convert your road map into a human readable doc
 be so that you can display it on a website, drop it into a planning system or simply to make it a
 bit easier to read. These tools are designed to help with that.
 
-#### [HTML](/tools/visualizations/html/README.md)
+#### [DocFX](/tools/documentation/docfx/README.md)
+Allows you to render a `roadmap.yml` file directly within DocFX, if that's your poison.
+
+```sh
+nuget install DocFX.Plugins.Roadmap -ExcludeVersion -OutputDirectory .
+```
+
+#### [HTML](/tools/documentation/html/README.md)
 Converts your `roadmap.yml` file into a static HTML file which can be easily viewed in most
 web browsers.
 
@@ -39,7 +46,7 @@ go install github.com/SierraSoftworks/roadmap/tools/roadmap@latest
 roadmap render html --in roadmap.yml --out roadmap.html
 ```
 
-#### [Markdown](/tools/visualizations/markdown/README.md)
+#### [Markdown](/tools/documentation/markdown/README.md)
 Converts your `roadmap.yml` file into a Markdown file which can be rendered by most Markdown
 rendering programs.
 
@@ -53,7 +60,7 @@ roadmap render md --in roadmap.yml --out roadmap.md
 roadmap render md --int roadmap.yml --out roadmap.md --simple
 ```
 
-#### [Web Viewer](/tools/website/README.md)
+#### [Web Viewer](/tools/documentation/web-viewer/README.md)
 The Road Map website includes a viewer which allows you to visualize your road map directly
 from a public repository. It will load the `roadmap.yml` file (if present) in the root of
 your repository and render that in your browser.
