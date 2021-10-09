@@ -12,3 +12,7 @@ updates:
    directory: /docs
    schedule:
      interval: daily
+ - package-ecosystem: nuget
+   directory: /tools/docfx
+   schedule:
+     interval: daily
