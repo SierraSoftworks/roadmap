@@ -15,6 +15,7 @@
     <RepositoryType>git</RepositoryType>
     <RepositoryBranch>main</RepositoryBranch>
     <NoWarn>$(NoWarn);NU5100</NoWarn>
+    <TargetsForTfmSpecificContentInPackage>$(TargetsForTfmSpecificContentInPackage);PluginContent</TargetsForTfmSpecificContentInPackage>
   </PropertyGroup>
 
   <ItemGroup>
@@ -37,10 +38,11 @@
   </ItemGroup>
 
   <!-- Plugin Package -->
-  <ItemGroup>
-    <Content Include="$(OutputPath)\*.dll">
-      <Pack>true</Pack>
-      <PackagePath>content\plugins\</PackagePath>
-    </Content>
-  </ItemGroup>
+  <Target Name="PluginContent">
+    <ItemGroup>
+      <TfmSpecificPackageFile Include="$(OutputPath)\*.dll">
+        <PackagePath>content\plugins\</PackagePath>
+      </TfmSpecificPackageFile>
+    </ItemGroup>
+  </Target>
 </Project>

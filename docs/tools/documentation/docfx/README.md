@@ -11,11 +11,44 @@ You'll need DocFX installed on your machine and a prepared project, the best way
 their [Getting Started Guide](https://dotnet.github.io/docfx/tutorial/docfx_getting_started.html).
 
 ### Installation
-To install the plugin, run `nuget install DoxFX.Plugins.Roadmap -ExcludeVersion -OutputDirectory .` to download
-the latest version of the plugin. This will create a `DocFX.Plugins.Roadmap` directory which can be
-used as a template within your `docfx.json` file to enable the road map renderer.
+#### Using NuGet
+The simplest way to install the package is using NuGet.
 
-```json
+:::: code-group
+::: code-group-item PowerShell
+```powershell
+# NOTE: You might need to accept a warning prompt to let this access nuget.org
+Install-Package -ExcludeVersion -Destination . -SkipDependencies -Name DocFX.Plugins.Roadmap -Force
+```
+:::
+
+::: code-group-item NuGet.exe
+```powershell
+# Make sure that you have the NuGet.exe on your path (https://www.nuget.org/downloads)
+nuget install DocFX.Plugins.Roadmap -ExcludeVersion -OutputDirectory .
+```
+:::
+::::
+
+#### Manual Installation
+If you don't have NuGet installed, or would prefer to do things the hard way, then you can manually extract the package
+by downloading it directly from NuGet.org. To do so, follow these steps.
+
+1. Head to the [DocFX.Plugins.Roadmap](https://www.nuget.org/packages/DocFX.Plugins.Roadmap/) package on nuget.org.
+2. Click the `Download Package` link on the right hand side, under the **About** heading.
+3. Rename the file and add a `.zip` extension to it, it should now look something like `docfx.plugins.roadmap.1.0.10.nupkg.zip`.
+4. Open your new zip file and extract the `content` directory into a `DocFX.Plugins.Roadmap/content` directory inside your project.
+
+::: warning
+If you are able to, NuGet is a much simpler way to install the package and is less prone to failure.
+:::
+
+#### Configuring DocFX
+Once you have installed the plugin, you will need to configure DocFX to use it. This is done by adding the
+plugin's `content` directory to your `template` list. This will cause DocFX to load the plugin and apply it
+to any `roadmap.yml` files in your project.
+
+```json{8}
 // docfx.json
 {
     "metadata": [],
