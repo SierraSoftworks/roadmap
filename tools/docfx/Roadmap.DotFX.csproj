@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net472</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <IsPackable>true</IsPackable>
     <PackageId>DocFX.Plugins.Roadmap</PackageId>
     <Authors>bpannell</Authors>
@@ -16,6 +16,10 @@
     <RepositoryBranch>main</RepositoryBranch>
     <NoWarn>$(NoWarn);NU5100</NoWarn>
     <TargetsForTfmSpecificContentInPackage>$(TargetsForTfmSpecificContentInPackage);PluginContent</TargetsForTfmSpecificContentInPackage>
+
+    <!-- Ensure that we copy the dependencies for the project into our output -->    
+    <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
   </PropertyGroup>
 
   <ItemGroup>
@@ -40,7 +44,7 @@
   <!-- Plugin Package -->
   <Target Name="PluginContent">
     <ItemGroup>
-      <TfmSpecificPackageFile Include="$(OutputPath)\*.dll">
+      <TfmSpecificPackageFile Include="$(OutputPath)\**\*.dll" Exclude="$(OutputPath)\**\System.*.dll">
         <PackagePath>content\plugins\</PackagePath>
       </TfmSpecificPackageFile>
     </ItemGroup>
