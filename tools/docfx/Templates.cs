@@ -14,10 +14,7 @@ namespace Roadmap.DotFX
         {
             var assembly = Assembly.GetExecutingAssembly();
             var resourceName = $"{typeof(Templates).Namespace}.{filename}";
-
-            Console.WriteLine(string.Join(",", assembly.GetManifestResourceNames()));
-            Console.WriteLine(resourceName);
-
+            
             using (var stream = assembly.GetManifestResourceStream(resourceName))
             using (var reader = new StreamReader(stream))
             {
