@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFrameworks>netstandard2.0;net472</TargetFrameworks>
     <IsPackable>true</IsPackable>
     <PackageId>DocFX.Plugins.Roadmap</PackageId>
     <Authors>bpannell</Authors>
@@ -20,19 +20,21 @@
     <!-- Ensure that we copy the dependencies for the project into our output -->    
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+
+    <!-- The version of DocFX that we are targetting -->
+    <DocFxVersion>2.58.4</DocFxVersion>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Handlebars.Net" Version="2.0.9" />
-    <PackageReference Include="markdig" Version="0.20.0" />
     <PackageReference Include="Microsoft.Composition" Version="1.0.31" />
-    <PackageReference Include="Microsoft.DocAsCode.Common" Version="2.58.4" />
-    <PackageReference Include="Microsoft.DocAsCode.Plugins" Version="2.58.4" />
+    <PackageReference Include="Microsoft.DocAsCode.Common" Version="$(DocFxVersion)" />
+    <PackageReference Include="Microsoft.DocAsCode.MarkdigEngine" Version="$(DocFxVersion)" />
+    <PackageReference Include="Microsoft.DocAsCode.Plugins" Version="$(DocFxVersion)" />
     <PackageReference Include="Nerdbank.GitVersioning" Version="3.4.244">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="System.Collections.Immutable" Version="5.0.0" />
   </ItemGroup>
 
   <!-- Templates -->
@@ -42,9 +44,9 @@
   </ItemGroup>
 
   <!-- Plugin Package -->
-  <Target Name="PluginContent">
+  <Target Name="PluginContent" Condition="'$(TargetFramework)' == 'net472'">
     <ItemGroup>
-      <TfmSpecificPackageFile Include="$(OutputPath)\**\*.dll" Exclude="$(OutputPath)\**\System.*.dll">
+      <TfmSpecificPackageFile Include="$(OutputPath)\**\*.dll">
         <PackagePath>content\plugins\</PackagePath>
       </TfmSpecificPackageFile>
     </ItemGroup>
