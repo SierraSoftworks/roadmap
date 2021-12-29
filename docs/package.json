@@ -22,7 +22,7 @@
   "homepage": "https://github.com/SierraSoftworks/roadmap#readme",
   "devDependencies": {
     "@vuepress/plugin-google-analytics": "^2.0.0-beta.29",
-    "@vuepress/plugin-palette": "^2.0.0-beta.28",
+    "@vuepress/plugin-palette": "^2.0.0-beta.32",
     "@vuepress/plugin-register-components": "^2.0.0-beta.29",
     "ace-builds": "^1.4.13",
     "js-yaml": "^4.1.0",
