@@ -11,6 +11,7 @@ import (
 var validateCommand = cli.Command{
 	Name:      "validate",
 	Aliases:   []string{"lint"},
+	Usage:     "Validates that a roadmap.yml file conforms to the standard schema.",
 	ArgsUsage: "./roadmap.yml",
 	Action: func(c *cli.Context) error {
 		f, err := ioutil.ReadFile(c.Args().First())

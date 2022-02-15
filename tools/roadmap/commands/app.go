@@ -11,6 +11,14 @@ var app = &cli.App{
 	},
 	Commands: cli.Commands{
 		&cli.Command{
+			Name:    "serve",
+			Aliases: []string{"s"},
+			Usage:   "Serve your roadmap.yml file over HTTP.",
+			Subcommands: cli.Commands{
+				&serveHtmlCommand,
+			},
+		},
+		&cli.Command{
 			Name:    "render",
 			Aliases: []string{"to"},
 			Usage:   "Renders a roadmap.yml file into the provided format.",
