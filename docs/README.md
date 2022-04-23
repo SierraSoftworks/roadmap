@@ -2,11 +2,8 @@
 home: true
 
 actions:
-    - text: Editor
-      link: /editor/
     - text: Get Started
       link: /guide/
-      type: secondary
 
 features:
     - title: Structured

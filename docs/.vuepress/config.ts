@@ -46,10 +46,6 @@ export default defineUserConfig<DefaultThemeOptions>({
         link: "/guide/README.md",
       },
       {
-        text: "Editor",
-        link: "/editor/README.md",
-      },
-      {
         text: "Tools",
         link: "/tools/README.md",
       },
@@ -80,12 +76,6 @@ export default defineUserConfig<DefaultThemeOptions>({
           text: 'Tools',
           children: [
             '/tools/README.md',
-          ]
-        },
-        {
-          text: 'Editors',
-          children: [
-            '/tools/editors/web-editor/README.md',
           ]
         },
         {

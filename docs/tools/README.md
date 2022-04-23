@@ -7,9 +7,6 @@ Putting together your road map is something we'd like to make as easy as possibl
 that, there are several editors and editor integrations available. Their goal is to provide
 you with guidance and (in some cases) realtime feedback on your road map.
 
-#### [Road Map Website](/tools/editors/web-editor/README.md)
-The Road Map website includes an [Editor](/editor/README.md) which is designed to make 
-it easy to visualize the results of your changes.
 
 ## Visualizations
 One of the best things to do with your road map is show it to people and what better way than
