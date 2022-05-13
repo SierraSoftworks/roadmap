@@ -1,3 +1,4 @@
+{{- /*gotype: github.com/SierraSoftworks/roadmap.Roadmap*/ -}}
 {{ $root := . -}}
 
 # {{ .Title }}
