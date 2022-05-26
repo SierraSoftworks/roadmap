@@ -23,7 +23,7 @@
   "devDependencies": {
     "@vuepress/plugin-google-analytics": "^2.0.0-beta.45",
     "@vuepress/plugin-palette": "^2.0.0-beta.45",
-    "@vuepress/plugin-register-components": "^2.0.0-beta.45",
+    "@vuepress/plugin-register-components": "^2.0.0-beta.46",
     "ace-builds": "^1.5.0",
     "js-yaml": "^4.1.0",
     "markdown-it": "^13.0.1",
