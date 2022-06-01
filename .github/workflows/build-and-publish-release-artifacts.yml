@@ -42,9 +42,9 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_name: roadmap-graphviz-linux-amd64
+        asset_name: roadmap-graphviz-linux-amd64.zip
         asset_path: ./roadmap-graphviz-linux-amd64.zip
-        asset_content_type: application/binary-x
+        asset_content_type: application/zip
 
     - name: Upload Windows Release Asset
       uses: actions/upload-release-asset@v1
@@ -52,6 +52,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_name: roadmap-graphviz-windows-amd64
+        asset_name: roadmap-graphviz-windows-amd64.zip
         asset_path: ./roadmap-graphviz-windows-amd64.zip
-        asset_content_type: application/binary-x
+        asset_content_type: application/zip
