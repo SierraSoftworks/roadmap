@@ -19,8 +19,8 @@ jobs:
     - name: Check out code into the Go module directory
       uses: actions/checkout@v3.0.2
 
-    - run: mkdir roadmap-graphviz-linux-amd64 && env GOOS=linux GOARCH=amd64 go build -o roadmap-graphviz-linux-amd64 ./...
-    - run: mkdir roadmap-graphviz-windows-amd64 && env GOOS=windows GOARCH=amd64 go build -o roadmap-graphviz-windows-amd64 ./...
+    - run: mkdir roadmap-graphviz-linux-amd64 && env GOOS=linux GOARCH=amd64 go build -o roadmap-graphviz-linux-amd64 ./... && zip -r roadmap-graphviz-linux-amd64.zip roadmap-graphviz-linux-amd64
+    - run: mkdir roadmap-graphviz-windows-amd64 && env GOOS=windows GOARCH=amd64 go build -o roadmap-graphviz-windows-amd64 ./... && roadmap-graphviz-windows-amd64.zip roadmap-graphviz-windows-amd64
 
     - name: Test
       run: go test -v ./...
@@ -43,7 +43,7 @@ jobs:
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
         asset_name: roadmap-graphviz-linux-amd64
-        asset_path: ./roadmap-graphviz-linux-amd64
+        asset_path: ./roadmap-graphviz-linux-amd64.zip
         asset_content_type: application/binary-x
 
     - name: Upload Windows Release Asset
@@ -53,5 +53,5 @@ jobs:
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
         asset_name: roadmap-graphviz-windows-amd64
-        asset_path: ./roadmap-graphviz-windows-amd64
+        asset_path: ./roadmap-graphviz-windows-amd64.zip
         asset_content_type: application/binary-x
