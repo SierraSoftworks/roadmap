@@ -20,7 +20,7 @@ jobs:
       uses: actions/checkout@v3.0.2
 
     - run: mkdir roadmap-graphviz-linux-amd64 && env GOOS=linux GOARCH=amd64 go build -o roadmap-graphviz-linux-amd64 ./... && zip -r roadmap-graphviz-linux-amd64.zip roadmap-graphviz-linux-amd64
-    - run: mkdir roadmap-graphviz-windows-amd64 && env GOOS=windows GOARCH=amd64 go build -o roadmap-graphviz-windows-amd64 ./... && roadmap-graphviz-windows-amd64.zip roadmap-graphviz-windows-amd64
+    - run: mkdir roadmap-graphviz-windows-amd64 && env GOOS=windows GOARCH=amd64 go build -o roadmap-graphviz-windows-amd64 ./... && zip -r roadmap-graphviz-windows-amd64.zip roadmap-graphviz-windows-amd64
 
     - name: Test
       run: go test -v ./...
