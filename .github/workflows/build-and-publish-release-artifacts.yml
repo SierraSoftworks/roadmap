@@ -1,0 +1,62 @@
+name: Build and Publish Release Artifacts
+
+on: [push]
+
+jobs:
+
+  build-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Set up Go 1.x
+      uses: actions/setup-go@v2
+      with:
+        go-version: ^1.13
+
+    - name: Check out code into the Go module directory
+      uses: actions/checkout@v2
+
+    - name: Get dependencies
+      run: go get -v -t -d ./...
+
+    - run: env GOOS=linux GOARCH=amd64 go build -o roadmap-graphviz-linux-amd64 ./...
+    - run: env GOOS=windows GOARCH=amd64 go build -o roadmap-graphviz-windows-amd64 ./...
+
+    - name: Test
+      run: go test -v ./...
+
+    - name: Get Version Number
+      id: get_version_number
+      run: echo "::set-output name=version::$(./roadmap-graphviz-linux-amd64 -v)"
+      shell: bash
+
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ steps.get_version_number.outputs.version }}
+        release_name: v${{ steps.get_version_number.outputs.version }}
+        draft: false
+        prerelease: false
+
+    - name: Upload Linux Release Asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_name: roadmap-graphviz-linux-amd64
+        asset_path: ./roadmap-graphviz-linux-amd64
+        asset_content_type: application/binary-x
+
+    - name: Upload Windows Release Asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_name: roadmap-graphviz-windows-amd64
+        asset_path: ./roadmap-graphviz-windows-amd64
+        asset_content_type: application/binary-x
