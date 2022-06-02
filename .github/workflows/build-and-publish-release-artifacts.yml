@@ -6,11 +6,18 @@ on:
       - '*'
 
 jobs:
-
-  build-and-publish:
+  build:
+    name: Build ${{matrix.os}}-${{matrix.arch}}
     runs-on: ubuntu-latest
-    steps:
+    strategy:
+      matrix:
+        os: [windows, linux, darwin]
+        arch: [amd64, arm64]
+        include:
+          - os: windows
+            extension: '.exe'
 
+    steps:
     - name: Set up Go
       uses: actions/setup-go@v3
 
@@ -20,36 +27,25 @@ jobs:
     - name: Test
       run: go test -v ./...
 
-    - run: mkdir roadmap-linux-amd64 && env GOOS=linux GOARCH=amd64 go build -o roadmap-linux-amd64 ./... && zip -r roadmap-linux-amd64.zip roadmap-linux-amd64
-    - run: mkdir roadmap-windows-amd64 && env GOOS=windows GOARCH=amd64 go build -o roadmap-windows-amd64 ./... && zip -r roadmap-windows-amd64.zip roadmap-windows-amd64
+    - run: mkdir roadmap-${{matrix.os}}-${{matrix.arch}} && env GOOS=${{matrix.os}} GOARCH=${{matrix.arch}} go build -o roadmap-${{matrix.os}}-${{matrix.arch}} ./... && zip -r roadmap-${{matrix.os}}-${{matrix.arch}}.zip roadmap-${{matrix.os}}-${{matrix.arch}}
 
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
       with:
-        tag_name: ${{ github.ref_name }}
-        release_name: v${{ github.ref_name }}
+        tag_name: ${{github.ref_name}}
+        release_name: v${{github.ref_name}}
         draft: false
         prerelease: false
 
-    - name: Upload Linux Release Asset
+    - name: Upload ${{matrix.os}}-${{matrix.arch}} Release Asset
       uses: actions/upload-release-asset@v1
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
       with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_name: roadmap-linux-amd64.zip
-        asset_path: ./roadmap-linux-amd64.zip
-        asset_content_type: application/zip
-
-    - name: Upload Windows Release Asset
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_name: roadmap-windows-amd64.zip
-        asset_path: ./roadmap-windows-amd64.zip
+        upload_url: ${{steps.create_release.outputs.upload_url}}
+        asset_name: roadmap-${{matrix.os}}-${{matrix.arch}}.zip
+        asset_path: ./roadmap-${{matrix.os}}-${{matrix.arch}}.zip
         asset_content_type: application/zip
