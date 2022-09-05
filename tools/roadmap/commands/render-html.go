@@ -14,6 +14,9 @@ import (
 //go:embed templates/roadmap.html.css
 var htmlRoadmapCss string
 
+//go:embed templates/roadmap.html.watch.js
+var htmlRoadmapWatchScript string
+
 //go:embed templates/roadmap.html
 var htmlRoadmapTemplate string
 
@@ -51,6 +54,9 @@ var htmlRenderCommand = cli.Command{
 		dot, err := renderHtmlTemplate(r, htmlRoadmapTemplate, template.FuncMap{
 			"stylesheet": func() template.CSS {
 				return template.CSS(htmlRoadmapCss)
+			},
+			"script": func() template.JS {
+				return template.JS("")
 			},
 		})
 		if err != nil {

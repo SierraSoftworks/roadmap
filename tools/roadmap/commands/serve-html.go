@@ -7,6 +7,8 @@ import (
 	"html/template"
 	"io/ioutil"
 	"net/http"
+	"os"
+	"time"
 
 	"github.com/SierraSoftworks/roadmap"
 	"github.com/urfave/cli/v2"
@@ -52,6 +54,9 @@ var serveHtmlCommand = cli.Command{
 				"stylesheet": func() template.CSS {
 					return template.CSS(htmlRoadmapCss)
 				},
+				"script": func() template.JS {
+					return template.JS(htmlRoadmapWatchScript)
+				},
 			})
 			if err != nil {
 				w.WriteHeader(http.StatusBadRequest)
@@ -66,7 +71,45 @@ var serveHtmlCommand = cli.Command{
 			}
 		})
 
-		fmt.Printf("Listening on http://localhost:%d/...\n", c.Int("port"))
+		http.HandleFunc("/watch", func(w http.ResponseWriter, r *http.Request) {
+			stat, err := os.Stat(c.String("input"))
+			if err != nil {
+				w.WriteHeader(http.StatusNotFound)
+				fmt.Fprintf(w, "Failed to open roadmap file")
+				return
+			}
+
+			w.Header().Set("Content-Type", "text/event-stream")
+			w.Header().Set("Cache-Control", "no-cache")
+			w.WriteHeader(http.StatusOK)
+
+			w.Write([]byte(": ready\n\n\n"))
+
+			lastUpdated := stat.ModTime()
+			for {
+				time.Sleep(1 * time.Second)
+				if _, err = w.Write([]byte(": ping\n\n\n")); err != nil {
+					break
+				}
+
+				if stat, err := os.Stat(c.String("input")); err == nil {
+					if stat.ModTime().After(lastUpdated) {
+						w.Write([]byte("event: reload\ndata: reload\n\n\n"))
+						lastUpdated = stat.ModTime()
+					}
+				} else {
+					w.Write([]byte("event: error\ndata: error\n\n\n"))
+					fmt.Printf("Failed to watch roadmap file for changes: %s", err)
+					return
+				}
+
+				if f, ok := w.(http.Flusher); ok {
+					f.Flush()
+				}
+			}
+		})
+
+		fmt.Printf("Listening on http://localhost:%d/\n", c.Int("port"))
 		return http.ListenAndServe(fmt.Sprintf(":%d", c.Int("port")), nil)
 	},
 }
