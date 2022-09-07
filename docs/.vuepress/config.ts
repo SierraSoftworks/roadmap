@@ -1,5 +1,9 @@
-import { defineUserConfig, PageHeader, DefaultThemeOptions } from 'vuepress'
+import { defineUserConfig, PageHeader } from 'vuepress'
+import defaultTheme from '@vuepress/theme-default'
 import { path } from '@vuepress/utils'
+
+import {googleAnalyticsPlugin} from "@vuepress/plugin-google-analytics"
+import {registerComponentsPlugin} from "@vuepress/plugin-register-components"
 
 function htmlDecode(input: string): string {
   return input.replace("&#39;", "'").replace("&amp;", "&").replace("&quot;", '"')
@@ -10,7 +14,7 @@ function fixPageHeader(header: PageHeader) {
   header.children.forEach(child => fixPageHeader(child))
 }
 
-export default defineUserConfig<DefaultThemeOptions>({
+export default defineUserConfig({
   lang: 'en-GB',
   title: 'Road map',
   description: "Generate your team's road-maps from structured data.",
@@ -20,23 +24,16 @@ export default defineUserConfig<DefaultThemeOptions>({
     ['link', { rel: 'icon', href: '/favicon.ico' }]
   ],
 
-  //bundler: "@vuepress/bundler-vite",
-
-  clientAppEnhanceFiles: [
-    path.resolve(__dirname, "enhance", "cloudflare.analytics.js")
-  ],
-
-  extendsPageData(page, app) {
+  extendsPage(page, app) {
     const fixedHeaders = page.headers || []
     fixedHeaders.forEach(header => fixPageHeader(header))
 
-    return {
-      headers: fixedHeaders,
-    }
+    page.headers = fixedHeaders;
   },
 
-  themeConfig: {
+  theme: defaultTheme({
     logo: 'https://cdn.sierrasoftworks.com/logos/icon.png',
+    logoDark: 'https://cdn.sierrasoftworks.com/logos/icon_light.png',
 
     repo: "SierraSoftworks/roadmap",
     docsDir: 'docs',
@@ -95,12 +92,12 @@ export default defineUserConfig<DefaultThemeOptions>({
         }
       ]
     }
-  },
+  }),
 
   plugins: [
-    ["@vuepress/plugin-google-analytics", { id: "G-R57T3LCFD4" }],
-    ["@vuepress/plugin-register-components", {
-      componentsDir: path.resolve(__dirname, "./components")
-    }],
+    googleAnalyticsPlugin({ id: "G-R57T3LCFD4" }),
+    registerComponentsPlugin({
+      componentsDir: path.resolve(__dirname, './components'),
+    })
   ]
 })
