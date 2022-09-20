@@ -31,7 +31,7 @@
     <PackageReference Include="Microsoft.DocAsCode.Common" Version="$(DocFxVersion)" />
     <PackageReference Include="Microsoft.DocAsCode.MarkdigEngine" Version="$(DocFxVersion)" />
     <PackageReference Include="Microsoft.DocAsCode.Plugins" Version="$(DocFxVersion)" />
-    <PackageReference Include="Nerdbank.GitVersioning" Version="3.5.109">
+    <PackageReference Include="Nerdbank.GitVersioning" Version="3.5.113">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
