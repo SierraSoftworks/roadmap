@@ -7,6 +7,6 @@ require (
 	github.com/pkg/errors v0.9.1
 	github.com/santhosh-tekuri/jsonschema/v5 v5.0.1
 	github.com/stretchr/testify v1.8.0
-	github.com/urfave/cli/v2 v2.17.1
+	github.com/urfave/cli/v2 v2.19.2
 	gopkg.in/yaml.v3 v3.0.1
 )
