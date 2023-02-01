@@ -59,7 +59,8 @@ roadmap render fmd --in roadmap.yml --out roadmap.md --frontmatter 'weight: 10, 
 ::::
 
 This will result in your Markdown file starting with the following frontmatter preamble (note
-that `title` and `description` are automatically populated from the roadmap's metadata).
+that `title` and `description` are automatically populated from the roadmap's metadata if you
+don't specify them).
 
 ```yaml
 ---
