@@ -5,7 +5,6 @@ import (
 	_ "embed"
 	"fmt"
 	"html/template"
-	"io/ioutil"
 	"net/http"
 	"os"
 	"time"
@@ -36,7 +35,7 @@ var serveHtmlCommand = cli.Command{
 	},
 	Action: func(c *cli.Context) error {
 		http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-			f, err := ioutil.ReadFile(c.String("input"))
+			f, err := os.ReadFile(c.String("input"))
 			if err != nil {
 				w.WriteHeader(http.StatusNotFound)
 				fmt.Fprintf(w, "Failed to open roadmap file: %s", err)

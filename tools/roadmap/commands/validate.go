@@ -3,7 +3,7 @@ package commands
 import (
 	"errors"
 	"fmt"
-	"io/ioutil"
+	"os"
 
 	"github.com/SierraSoftworks/roadmap"
 	"github.com/SierraSoftworks/roadmap/tools/roadmap/commands/linting"
@@ -17,7 +17,7 @@ var validateCommand = cli.Command{
 	Usage:     "Validates that a roadmap.yml file conforms to the standard schema and reports any linter issues.",
 	ArgsUsage: "./roadmap.yml",
 	Action: func(c *cli.Context) error {
-		f, err := ioutil.ReadFile(c.Args().First())
+		f, err := os.ReadFile(c.Args().First())
 		if err != nil {
 			return err
 		}

@@ -3,7 +3,6 @@ package commands
 import (
 	_ "embed"
 	"fmt"
-	"io/ioutil"
 	"os"
 	"text/template"
 
@@ -35,7 +34,7 @@ var graphvizRenderCommand = cli.Command{
 		},
 	},
 	Action: func(c *cli.Context) error {
-		f, err := ioutil.ReadFile(c.String("input"))
+		f, err := os.ReadFile(c.String("input"))
 		if err != nil {
 			return err
 		}
@@ -66,7 +65,7 @@ var graphvizRenderCommand = cli.Command{
 		}
 
 		if c.String("output") != "" {
-			return ioutil.WriteFile(c.String("output"), []byte(dot), os.ModePerm)
+			return os.WriteFile(c.String("output"), []byte(dot), os.ModePerm)
 		} else {
 			_, err := fmt.Println(dot)
 			return err
