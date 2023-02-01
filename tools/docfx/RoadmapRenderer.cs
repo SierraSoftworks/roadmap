@@ -31,7 +31,7 @@ namespace Roadmap.DotFX
         public FileModel Load(FileAndType file, ImmutableDictionary<string, object> metadata)
         {
             var deserializer = new DeserializerBuilder()
-                .WithNamingConvention(new CamelCaseNamingConvention())
+                .WithNamingConvention(CamelCaseNamingConvention.Instance)
                 .Build();
 
             var roadmap = deserializer.Deserialize<Models.Roadmap>(File.ReadAllText(EnvironmentContext.FileAbstractLayer.GetPhysicalPath(file.File)));
