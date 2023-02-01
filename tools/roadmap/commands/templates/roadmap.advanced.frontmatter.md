@@ -1,8 +1,6 @@
 {{- /*gotype: github.com/SierraSoftworks/roadmap.Roadmap*/ -}}
 {{ $root := . -}}
 ---
-title: {{ .Title | json }}
-description: {{ .Description | json }}
 {{- range $key, $value := metadata }}
 {{ $key }}: {{ $value | json }}
 {{- end }}

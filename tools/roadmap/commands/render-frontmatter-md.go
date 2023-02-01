@@ -98,6 +98,14 @@ var frontmatterMdRenderCommand = cli.Command{
 					}
 				}
 
+				if m["title"] == nil {
+					m["title"] = r.Title
+				}
+
+				if m["description"] == nil {
+					m["description"] = r.Description
+				}
+
 				return m
 			},
 		})
