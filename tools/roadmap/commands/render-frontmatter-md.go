@@ -8,22 +8,29 @@ import (
 
 	"github.com/SierraSoftworks/roadmap"
 	"github.com/urfave/cli/v2"
+	yaml "gopkg.in/yaml.v3"
 )
 
-//go:embed templates/roadmap.basic.md
-var mdRoadmapBasicTemplate string
+//go:embed templates/roadmap.basic.frontmatter.md
+var frontmatterMdRoadmapBasicTemplate string
 
-//go:embed templates/roadmap.advanced.md
-var mdRoadmapAdvancedTemplate string
+//go:embed templates/roadmap.advanced.frontmatter.md
+var frontmatterMdRoadmapAdvancedTemplate string
 
-var mdRenderCommand = cli.Command{
-	Name:    "markdown",
-	Aliases: []string{"md"},
-	Usage:   "Generate a Markdown file which can be rendered to visualize your roadmap specification.",
+var frontmatterMdRenderCommand = cli.Command{
+	Name:    "frontmatter-markdown",
+	Aliases: []string{"fmd"},
+	Usage:   "Generate a Markdown file which can be rendered to visualize your roadmap specification, including a frontmatter preamble.",
 	Flags: []cli.Flag{
 		&cli.BoolFlag{
 			Name:  "simple",
 			Usage: "Emits simplified Markdown for maximum compatibility.",
+		},
+		&cli.StringFlag{
+			Name:    "frontmatter",
+			Aliases: []string{"m"},
+			Usage:   "Additional frontmatter fields to include in the frontmatter, should be provided in YAML format.",
+			Value:   "{}",
 		},
 		&cli.StringFlag{
 			Name:      "input",
@@ -51,9 +58,9 @@ var mdRenderCommand = cli.Command{
 			return err
 		}
 
-		tmpl := mdRoadmapAdvancedTemplate
+		tmpl := frontmatterMdRoadmapAdvancedTemplate
 		if c.Bool("simple") {
-			tmpl = mdRoadmapBasicTemplate
+			tmpl = frontmatterMdRoadmapBasicTemplate
 		}
 
 		dot, err := renderTextTemplate(r, tmpl, template.FuncMap{
@@ -82,6 +89,24 @@ var mdRenderCommand = cli.Command{
 				default:
 					return "#888"
 				}
+			},
+			"metadata": func() map[string]interface{} {
+				m := map[string]interface{}{}
+				if err := yaml.Unmarshal([]byte(c.String("frontmatter")), &m); err != nil {
+					return map[string]interface{}{
+						"__parse_error": err.Error(),
+					}
+				}
+
+				if m["title"] == nil {
+					m["title"] = r.Title
+				}
+
+				if m["description"] == nil {
+					m["description"] = r.Description
+				}
+
+				return m
 			},
 		})
 		if err != nil {

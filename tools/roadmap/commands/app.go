@@ -26,6 +26,7 @@ var app = &cli.App{
 				&graphvizRenderCommand,
 				&htmlRenderCommand,
 				&mdRenderCommand,
+				&frontmatterMdRenderCommand,
 			},
 		},
 		&validateCommand,

@@ -4,7 +4,6 @@ import (
 	_ "embed"
 	"fmt"
 	"html/template"
-	"io/ioutil"
 	"os"
 
 	"github.com/SierraSoftworks/roadmap"
@@ -41,7 +40,7 @@ var htmlRenderCommand = cli.Command{
 		},
 	},
 	Action: func(c *cli.Context) error {
-		f, err := ioutil.ReadFile(c.String("input"))
+		f, err := os.ReadFile(c.String("input"))
 		if err != nil {
 			return err
 		}
@@ -64,7 +63,7 @@ var htmlRenderCommand = cli.Command{
 		}
 
 		if c.String("output") != "" {
-			return ioutil.WriteFile(c.String("output"), []byte(dot), os.ModePerm)
+			return os.WriteFile(c.String("output"), []byte(dot), os.ModePerm)
 		} else {
 			_, err := fmt.Println(dot)
 			return err
