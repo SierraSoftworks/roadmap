@@ -15,7 +15,7 @@ import (
 
 func getDefaultTextRenderFunctions() template.FuncMap {
 	return template.FuncMap{
-		"json": func(in string) string {
+		"json": func(in interface{}) string {
 			out, err := json.Marshal(in)
 			if err != nil {
 				log.Fatal(err)

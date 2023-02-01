@@ -90,10 +90,10 @@ var frontmatterMdRenderCommand = cli.Command{
 					return "#888"
 				}
 			},
-			"metadata": func() map[string]string {
-				m := map[string]string{}
-				if err := yaml.Unmarshal([]byte(c.String("metadata")), &m); err != nil {
-					return map[string]string{
+			"metadata": func() map[string]interface{} {
+				m := map[string]interface{}{}
+				if err := yaml.Unmarshal([]byte(c.String("frontmatter")), &m); err != nil {
+					return map[string]interface{}{
 						"__parse_error": err.Error(),
 					}
 				}
