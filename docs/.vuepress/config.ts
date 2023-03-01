@@ -1,6 +1,8 @@
-import { defineUserConfig, PageHeader } from 'vuepress'
+import { defineUserConfig, PageHeader } from 'vuepress-vite'
 import defaultTheme from '@vuepress/theme-default'
-import { path } from '@vuepress/utils'
+import { getDirname, path } from '@vuepress/utils'
+
+const __dirname = getDirname(import.meta.url)
 
 import {googleAnalyticsPlugin} from "@vuepress/plugin-google-analytics"
 import {registerComponentsPlugin} from "@vuepress/plugin-register-components"
