@@ -22,7 +22,7 @@
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
 
     <!-- The version of DocFX that we are targetting -->
-    <DocFxVersion>2.65.2</DocFxVersion>
+    <DocFxVersion>2.65.3</DocFxVersion>
   </PropertyGroup>
 
   <ItemGroup>
