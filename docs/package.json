@@ -28,6 +28,6 @@
     "ace-builds": "^1.22.0",
     "js-yaml": "^4.1.0",
     "markdown-it": "^13.0.1",
-    "vuepress-vite": "2.0.0-beta.62"
+    "vuepress-vite": "2.0.0-beta.63"
   }
 }
