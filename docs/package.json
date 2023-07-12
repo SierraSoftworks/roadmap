@@ -24,7 +24,7 @@
     "@vuepress/plugin-google-analytics": "2.0.0-beta.66",
     "@vuepress/plugin-palette": "2.0.0-beta.66",
     "@vuepress/plugin-register-components": "2.0.0-beta.66",
-    "@vuepress/utils": "2.0.0-beta.65",
+    "@vuepress/utils": "2.0.0-beta.66",
     "ace-builds": "^1.23.4",
     "js-yaml": "^4.1.0",
     "markdown-it": "^13.0.1",
