@@ -27,7 +27,7 @@
     "@vuepress/utils": "2.0.0-rc.0",
     "ace-builds": "^1.32.0",
     "js-yaml": "^4.1.0",
-    "markdown-it": "^13.0.2",
+    "markdown-it": "^14.0.0",
     "vuepress-vite": "2.0.0-rc.0"
   }
 }
