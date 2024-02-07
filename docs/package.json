@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/SierraSoftworks/roadmap#readme",
   "devDependencies": {
-    "@vuepress/plugin-google-analytics": "2.0.0-rc.11",
+    "@vuepress/plugin-google-analytics": "2.0.0-rc.12",
     "@vuepress/plugin-palette": "2.0.0-rc.0",
     "@vuepress/plugin-register-components": "2.0.0-rc.11",
     "@vuepress/utils": "2.0.0-rc.2",
