@@ -23,7 +23,7 @@
   "devDependencies": {
     "@vuepress/plugin-google-analytics": "2.0.0-rc.52",
     "@vuepress/plugin-palette": "2.0.0-rc.0",
-    "@vuepress/plugin-register-components": "2.0.0-rc.52",
+    "@vuepress/plugin-register-components": "2.0.0-rc.54",
     "@vuepress/utils": "2.0.0-rc.2",
     "ace-builds": "^1.36.2",
     "js-yaml": "^4.1.0",
