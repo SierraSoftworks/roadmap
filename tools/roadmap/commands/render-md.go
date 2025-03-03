@@ -39,6 +39,13 @@ var mdRenderCommand = cli.Command{
 			Usage:     "The output `FILE` (defaults to stdout).",
 			TakesFile: true,
 		},
+		&cli.StringFlag{
+			Name:      "template",
+			Aliases:   []string{"temp"},
+			Usage:     "The input template file.",
+			Required:  false,
+			TakesFile: true,
+		},
 	},
 	Action: func(c *cli.Context) error {
 		f, err := os.ReadFile(c.String("input"))
@@ -52,7 +59,13 @@ var mdRenderCommand = cli.Command{
 		}
 
 		tmpl := mdRoadmapAdvancedTemplate
-		if c.Bool("simple") {
+		if c.String("template") != "" {
+			t, err := os.ReadFile(c.String("template"))
+			if err != nil {
+				return err
+			}
+			tmpl = string(t)
+		} else if c.Bool("simple") {
 			tmpl = mdRoadmapBasicTemplate
 		}
 
