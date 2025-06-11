@@ -27,7 +27,7 @@
 
   <ItemGroup>
     <PackageReference Include="Handlebars.Net" Version="2.1.6" />
-    <PackageReference Include="System.Composition" Version="9.0.5" />
+    <PackageReference Include="System.Composition" Version="9.0.6" />
     <PackageReference Include="Microsoft.DocAsCode.Common" Version="$(DocFxVersion)" />
     <PackageReference Include="Microsoft.DocAsCode.MarkdigEngine" Version="$(DocFxVersion)" />
     <PackageReference Include="Microsoft.DocAsCode.Plugins" Version="$(DocFxVersion)" />
