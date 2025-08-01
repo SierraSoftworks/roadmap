@@ -23,7 +23,11 @@ export default defineUserConfig({
 
   head: [
     ['meta', { name: "description", content: "Road map is a tool which allows you to generate your team's road-maps from structured data." }],
-    ['link', { rel: 'icon', href: '/favicon.ico' }]
+    ['link', { rel: 'icon', href: '/favicon.ico' }],
+    ["script", {
+        defer: "",
+        src: "https://analytics.sierrasoftworks.com/script.js",
+    }],
   ],
 
   extendsPage(page, app) {
