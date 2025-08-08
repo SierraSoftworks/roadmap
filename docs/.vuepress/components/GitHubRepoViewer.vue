@@ -18,9 +18,9 @@ import yaml from "js-yaml";
 
 export default defineComponent({
   setup() {
-    const repo = ref(null);
-    const roadmap = ref(null);
-    const error = ref(null);
+    const repo = ref(null as string|null);
+    const roadmap = ref(null as string|null);
+    const error = ref(null as Error|null);
 
     watch(
       () => window.location.hash,

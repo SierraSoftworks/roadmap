@@ -6,5 +6,5 @@ lastUpdated: false
 ---
 
 <ClientOnly>
-<GitHubRepoViewer />
+  <GitHubRepoViewer />
 </ClientOnly>
