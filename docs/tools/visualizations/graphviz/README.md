@@ -46,10 +46,7 @@ One of the quickest ways to get started is to use an online GraphViz renderer li
 
 ### Rendered
 
-<p style="text-align: center; margin: 2rem auto;">
-
-![Example Rendered Roadmap](./output.svg)
-</p>
+<img style="display: block; margin: 2rem auto;" src="./output.svg" alt="Example Rendered Roadmap">
 
 ### DOT File
 
@@ -119,6 +116,5 @@ digraph Roadmap {
 	
   }
   
-}  
 }
 ```

@@ -36,6 +36,6 @@ export default defineComponent({
 
 <style scoped>
 .dynamic-code {
-    color: var(--c-text-lighter);
+    color: var(--vp-c-accent-text);
 }
 </style>

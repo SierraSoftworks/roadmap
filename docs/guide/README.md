@@ -86,10 +86,7 @@ go install github.com/SierraSoftworks/roadmap/tools/roadmap@latest
 roadmap render markdown --in my-roadmap.yml
 ```
 
-<p style="text-align: center; margin: 2rem auto;">
-
-![Example Rendered Roadmap](./example_md.png)
-</p>
+<img style="display: block; margin: 2rem auto;" src="./example_md.png" alt="Example Rendered Roadmap">
 
 #### GraphViz Chart
 This chart was generated using our [GraphViz tool](/tools/visualizations/graphviz/README.md), which converts your `roadmap.yml` into a diagram
@@ -102,7 +99,4 @@ go install github.com/SierraSoftworks/roadmap/tools/roadmap@latest
 roadmap render graphviz --in my-roadmap.yml
 ```
 
-<p style="text-align: center; margin: 2rem auto;">
-
-![Example Rendered Roadmap](../tools/visualizations/graphviz/output.svg)
-</p>
+<img style="display: block; margin: 2rem auto;" src="../tools/visualizations/graphviz/output.svg" alt="Example Rendered Roadmap">

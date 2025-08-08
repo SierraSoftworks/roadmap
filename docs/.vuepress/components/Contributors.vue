@@ -10,7 +10,7 @@
         <div class="contributors-list">
             <div class="contributor" v-for="contributor in contributors" :key="contributor.login">
                 <img class="contributor__avatar" :src="contributor.avatar_url" :alt="'The avatar used by ' + contributor.login" width="80" height="80">
-                <a class="contributor__name" :href="contributor.html_url">{{ contributor.login }} <OutboundLink/></a>
+                <a class="contributor__name" :href="contributor.html_url">{{ contributor.login }}</a>
             </div>
         </div>
     </div>
@@ -36,7 +36,7 @@ export default defineComponent({
     },
 
     setup(props) {
-        const contributors = ref([])
+        const contributors = ref([] as Contributor[])
         const error = ref(null)
         const hasContributors = computed(() => !!contributors.value?.length)
 

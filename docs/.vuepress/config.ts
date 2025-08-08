@@ -1,10 +1,11 @@
-import { defineUserConfig, PageHeader } from 'vuepress-vite'
-import defaultTheme from '@vuepress/theme-default'
+import { defineUserConfig, PageHeader } from 'vuepress'
+import { defaultTheme } from '@vuepress/theme-default'
+import { viteBundler } from '@vuepress/bundler-vite'
 import { getDirname, path } from '@vuepress/utils'
 
 const __dirname = getDirname(import.meta.url)
 
-import {registerComponentsPlugin} from "@vuepress/plugin-register-components"
+import { registerComponentsPlugin } from "@vuepress/plugin-register-components"
 
 function htmlDecode(input: string): string {
   return input.replace("&#39;", "'").replace("&amp;", "&").replace("&quot;", '"')
@@ -24,8 +25,8 @@ export default defineUserConfig({
     ['meta', { name: "description", content: "Road map is a tool which allows you to generate your team's road-maps from structured data." }],
     ['link', { rel: 'icon', href: '/favicon.ico' }],
     ["script", {
-        defer: "",
-        src: "https://analytics.sierrasoftworks.com/script.js",
+      defer: "",
+      src: "https://analytics.sierrasoftworks.com/script.js",
     }],
   ],
 
@@ -35,6 +36,8 @@ export default defineUserConfig({
 
     page.headers = fixedHeaders;
   },
+
+  bundler: viteBundler(),
 
   theme: defaultTheme({
     logo: 'https://cdn.sierrasoftworks.com/logos/icon.png',

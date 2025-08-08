@@ -74,7 +74,4 @@ so it should be widely compatible and doesn't introduce any external dependencie
 
 ### Rendered
 
-<p style="text-align: center; margin: 2rem auto;">
-
-![Example Rendered Roadmap](./output.png)
-</p>
+<img style="display: block; margin: 2rem auto;" src="./output.png" alt="Example Rendered Roadmap">

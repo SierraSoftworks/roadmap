@@ -50,7 +50,4 @@ content of your road map document).
 
 ### Rendered
 
-<p style="text-align: center; margin: 2rem auto;">
-
-![Example Rendered Roadmap](./output.jpg)
-</p>
+<img style="display: block; margin: 2rem auto;" src="./output.jpg" alt="Example Rendered Roadmap">
