@@ -4,7 +4,6 @@ import { getDirname, path } from '@vuepress/utils'
 
 const __dirname = getDirname(import.meta.url)
 
-import {googleAnalyticsPlugin} from "@vuepress/plugin-google-analytics"
 import {registerComponentsPlugin} from "@vuepress/plugin-register-components"
 
 function htmlDecode(input: string): string {
@@ -101,7 +100,6 @@ export default defineUserConfig({
   }),
 
   plugins: [
-    googleAnalyticsPlugin({ id: "G-R57T3LCFD4" }),
     registerComponentsPlugin({
       componentsDir: path.resolve(__dirname, './components'),
     })
