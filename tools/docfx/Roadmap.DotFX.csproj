@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net7.0</TargetFrameworks>
+    <TargetFrameworks>net8.0</TargetFrameworks>
     <IsPackable>true</IsPackable>
     <PackageId>DocFX.Plugins.Roadmap</PackageId>
     <Authors>bpannell</Authors>
@@ -16,6 +16,7 @@
     <RepositoryBranch>main</RepositoryBranch>
     <NoWarn>$(NoWarn);NU5100</NoWarn>
     <TargetsForTfmSpecificContentInPackage>$(TargetsForTfmSpecificContentInPackage);PluginContent</TargetsForTfmSpecificContentInPackage>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
 
     <!-- Ensure that we copy the dependencies for the project into our output -->    
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
@@ -35,6 +36,11 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+  </ItemGroup>
+
+  <!-- NuGet Package -->
+  <ItemGroup>
+    <None Include="../../README.md" Pack="true" PackagePath="\"/>
   </ItemGroup>
 
   <!-- Templates -->
