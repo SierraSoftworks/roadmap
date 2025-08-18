@@ -27,7 +27,7 @@ jobs:
     - run: mkdir roadmap-${{matrix.os}}-${{matrix.arch}} && env GOOS=${{matrix.os}} GOARCH=${{matrix.arch}} go build -o roadmap-${{matrix.os}}-${{matrix.arch}} ./... && zip -r roadmap-${{matrix.os}}-${{matrix.arch}}.zip roadmap-${{matrix.os}}-${{matrix.arch}}
 
     - name: Upload ${{matrix.os}}-${{matrix.arch}} Release Asset
-      uses: SierraSoftworks/gh-releases@v1.0.7
+      uses: SierraSoftworks/gh-releases@v1.0.8
       with:
           files: roadmap-${{matrix.os}}-${{matrix.arch}}.zip
           token: ${{ secrets.GITHUB_TOKEN }}
