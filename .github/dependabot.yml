@@ -16,3 +16,7 @@ updates:
    directory: /tools/docfx
    schedule:
      interval: daily
+ - package-ecosystem: terraform
+   directory: /infra
+   schedule:
+     interval: daily
