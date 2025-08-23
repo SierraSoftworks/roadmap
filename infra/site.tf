@@ -23,6 +23,9 @@ resource "azurerm_static_web_app_custom_domain" "domain" {
 
   lifecycle {
     prevent_destroy = true
+    ignore_changes = [
+      validation_type
+    ]
   }
 
   depends_on = [
