@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/SierraSoftworks/roadmap#readme",
   "devDependencies": {
-    "@vuepress/bundler-vite": "2.0.0-rc.25",
+    "@vuepress/bundler-vite": "2.0.0-rc.26",
     "@vuepress/plugin-palette": "2.0.0-rc.112",
     "@vuepress/plugin-register-components": "2.0.0-rc.112",
     "@vuepress/theme-default": "2.0.0-rc.112",
