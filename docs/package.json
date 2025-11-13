@@ -27,7 +27,7 @@
     "@vuepress/theme-default": "2.0.0-rc.118",
     "@vuepress/utils": "2.0.0-rc.26",
     "ace-builds": "^1.43.4",
-    "js-yaml": "^4.1.0",
+    "js-yaml": "^4.1.1",
     "markdown-it": "^14.1.0",
     "sass-embedded": "^1.93.3",
     "vuepress": "2.0.0-rc.26"
