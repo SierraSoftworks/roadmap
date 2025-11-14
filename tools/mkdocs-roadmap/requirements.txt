@@ -1,5 +1,0 @@
-# Development dependencies for mkdocs-roadmap
--e .
-mkdocs>=1.0
-jinja2>=2.10
-pyyaml>=5.1

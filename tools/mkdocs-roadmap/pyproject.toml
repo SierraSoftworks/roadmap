@@ -29,6 +29,13 @@ dependencies = [
     "pyyaml>=5.1",
 ]
 
+[dependency-groups]
+dev = [
+    "mkdocs>=1.0",
+    "jinja2>=2.10",
+    "pyyaml>=5.1",
+]
+
 [project.entry-points."mkdocs.plugins"]
 roadmap = "mkdocs_roadmap:RoadmapPlugin"
 
