@@ -155,3 +155,6 @@ tmp/
 temp/
 
 # End of https://www.toptal.com/developers/gitignore/api/go,node
+*.egg-info/
+.venv/
+tools/mkdocs-roadmap/site/

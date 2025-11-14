@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mkdocs-roadmap"
+version = "0.1.0"
+description = "MkDocs plugin for rendering roadmap.yml files to roadmap.md files"
+readme = "README.md"
+requires-python = ">=3.7"
+license = "MIT"
+authors = [
+    {name = "SierraSoftworks"}
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+]
+dependencies = [
+    "mkdocs>=1.0",
+    "jinja2>=2.10",
+    "pyyaml>=5.1",
+]
+
+[project.entry-points."mkdocs.plugins"]
+roadmap = "mkdocs_roadmap:RoadmapPlugin"
+
+[tool.setuptools]
+packages = ["mkdocs_roadmap"]
+
+[tool.setuptools.package-data]
+mkdocs_roadmap = ["roadmap.advanced.md.j2"]
+
