@@ -158,3 +158,4 @@ temp/
 *.egg-info/
 .venv/
 tools/mkdocs-roadmap/site/
+__pycache__/
