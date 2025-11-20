@@ -12,7 +12,13 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.7", "3.8", "3.9", "3.10", "3.11"]
+        python-version:
+          - "3.9.25"
+          - "3.10.19"
+          - "3.11.14"
+          - "3.12.12"
+          - "3.13.9"
+          - "3.14.0"
     
     steps:
     - uses: actions/checkout@v5
