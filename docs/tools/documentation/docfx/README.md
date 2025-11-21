@@ -14,21 +14,19 @@ their [Getting Started Guide](https://dotnet.github.io/docfx/tutorial/docfx_gett
 #### Using NuGet
 The simplest way to install the package is using NuGet.
 
-:::: code-group
-::: code-group-item PowerShell
+::: code-tabs
+@tab PowerShell
 ```powershell
 # NOTE: You might need to accept a warning prompt to let this access nuget.org
 Install-Package -ExcludeVersion -Destination . -SkipDependencies -Name DocFX.Plugins.Roadmap -Force
 ```
-:::
 
-::: code-group-item NuGet.exe
+@tab NuGet.exe
 ```powershell
 # Make sure that you have the NuGet.exe on your path (https://www.nuget.org/downloads)
 nuget install DocFX.Plugins.Roadmap -ExcludeVersion -OutputDirectory .
 ```
 :::
-::::
 
 #### Manual Installation
 If you don't have NuGet installed, or would prefer to do things the hard way, then you can manually extract the package

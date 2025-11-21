@@ -1,0 +1,7 @@
+site_name: Roadmap Test
+docs_dir: ./example
+
+plugins:
+  - roadmap:
+      roadmaps:
+        - index.yaml
