@@ -22,19 +22,18 @@ go install github.com/SierraSoftworks/roadmap/tools/roadmap@latest
 To convert your `roadmap.yml` file into its Markdown representation, try running the following
 command. It'll write the result to your terminal, but if you'd prefer, you can write it to a file as well.
 
-:::: code-group
-::: code-group-item stdout
+::: code-tabs
+
+@tab stdout
 ```sh
 roadmap render md --in roadmap.yml
 ```
-:::
 
-::: code-group-item file
+@tab file
 ```sh
 roadmap render md --in roadmap.yml --out roadmap.md
 ```
 :::
-::::
 
 ### Frontmatter Support
 If you're rendering your roadmap to a target which supports Markdown frontmatter, you can use the
@@ -42,21 +41,18 @@ If you're rendering your roadmap to a target which supports Markdown frontmatter
 for the title, description and any other custom fields you might wish to provide. This is useful for
 integrations with tools like [Hugo](https://gohugo.io) or [Jekyll](https://jekyllrb.com).
 
-:::: code-group
+::: code-tabs
 
-::: code-group-item stdout
+@tab stdout
 ```sh
 roadmap render fmd --in roadmap.yml --frontmatter 'weight: 10, tags: ["roadmap"]'
 ```
-:::
 
-::: code-group-item file
+@tab file
 ```sh
 roadmap render fmd --in roadmap.yml --out roadmap.md --frontmatter 'weight: 10, tags: ["roadmap"]'
 ```
 :::
-
-::::
 
 This will result in your Markdown file starting with the following frontmatter preamble (note
 that `title` and `description` are automatically populated from the roadmap's metadata if you

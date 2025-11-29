@@ -96,6 +96,7 @@ export default defineUserConfig({
             '/tools/documentation/html/README.md',
             '/tools/documentation/markdown/README.md',
             '/tools/documentation/web-viewer/README.md',
+            '/tools/documentation/mkdocs/README.md',
           ]
         }
       ]
