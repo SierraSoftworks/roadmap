@@ -8,6 +8,14 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
+
+    environment:
+      name: pypi
+      url: https://pypi.org/project/mkdocs-roadmap/
+    permissions:
+      # IMPORTANT: this permission is mandatory for Trusted Publishing
+      id-token: write
+      contents: read
     
     steps:
     - uses: actions/checkout@v5
@@ -17,7 +25,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
-        python-version: "3.14.0"
+        python-version: "3.x"
     
     - name: Extract version from tag
       id: tag_version
@@ -56,11 +64,6 @@ jobs:
       run: |
         twine check dist/*
     
-    - name: Publish to PyPI
-      working-directory: ./tools/mkdocs-roadmap
-      env:
-        TWINE_USERNAME: __token__
-        TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
-      run: |
-        twine upload dist/*
+    - name: Publish package distributions to PyPI
+      uses: pypa/gh-action-pypi-publish@release/v1
 
