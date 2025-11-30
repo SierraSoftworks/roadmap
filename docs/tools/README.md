@@ -57,6 +57,13 @@ roadmap render md --in roadmap.yml --out roadmap.md
 roadmap render md --int roadmap.yml --out roadmap.md --simple
 ```
 
+#### [MkDocs](/tools/documentation/mkdocs/README.md)
+Allows you to render a `roadmap.yml` file directly within MkDocs projects through an automated plugin.
+
+```sh
+pip install mkdocs-roadmap
+```
+
 #### [Web Viewer](/tools/documentation/web-viewer/README.md)
 The Road Map website includes a viewer which allows you to visualize your road map directly
 from a public repository. It will load the `roadmap.yml` file (if present) in the root of

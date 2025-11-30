@@ -21,19 +21,17 @@ go install github.com/SierraSoftworks/roadmap/tools/roadmap@latest
 To convert your `roadmap.yml` file into its HTML representation, try running the following
 command. It'll write the result to your terminal, but if you'd prefer, you can write it to a file as well.
 
-:::: code-group
-::: code-group-item stdout
+::: code-tabs
+@tab stdout
 ```sh
 roadmap render html --in roadmap.yml
 ```
-:::
 
-::: code-group-item file
+@tab file
 ```sh
 roadmap render html --in roadmap.yml --out roadmap.html
 ```
 :::
-::::
 
 ### Serving 
 To preview your roadmap document in your browser while you work on it, you can run the following command. Every time you save changes made to your roadmap file, the HTML representation will update to reflect those changes which can speed up your roadmap development!

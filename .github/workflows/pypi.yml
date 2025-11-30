@@ -1,0 +1,69 @@
+name: PyPI
+
+on:
+  release:
+    types:
+      - published
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    environment:
+      name: pypi
+      url: https://pypi.org/project/mkdocs-roadmap/
+    permissions:
+      # IMPORTANT: this permission is mandatory for Trusted Publishing
+      id-token: write
+      contents: read
+    
+    steps:
+    - uses: actions/checkout@v5
+      with:
+        fetch-depth: 0
+    
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.x"
+    
+    - name: Extract version from tag
+      id: tag_version
+      run: |
+        VERSION=${GITHUB_REF#refs/tags/v}
+        VERSION=${VERSION#refs/tags/}
+        echo "version=$VERSION" >> $GITHUB_OUTPUT
+        echo "Extracted version: $VERSION"
+    
+    - name: Update version in pyproject.toml and setup.py
+      working-directory: ./tools/mkdocs-roadmap
+      run: |
+        VERSION="${{ steps.tag_version.outputs.version }}"
+        # Update version in pyproject.toml
+        sed -i "s/^version = \".*\"/version = \"$VERSION\"/" pyproject.toml
+        # Update version in setup.py
+        sed -i "s/version=\"[^\"]*\"/version=\"$VERSION\"/" setup.py
+        echo "Updated version to: $VERSION"
+        echo "pyproject.toml version:"
+        grep "^version" pyproject.toml
+        echo "setup.py version:"
+        grep "version=" setup.py | head -1
+    
+    - name: Install build dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install build twine
+    
+    - name: Build package
+      working-directory: ./tools/mkdocs-roadmap
+      run: |
+        python -m build
+    
+    - name: Check package
+      working-directory: ./tools/mkdocs-roadmap
+      run: |
+        twine check dist/*
+    
+    - name: Publish package distributions to PyPI
+      uses: pypa/gh-action-pypi-publish@release/v1
+

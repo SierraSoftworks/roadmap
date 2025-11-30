@@ -1,0 +1,78 @@
+# {{ title }}
+
+{% if authors %}
+<div style="display: flex; flex-direction: row; background: rgba(200, 200, 200, 0.15); padding: 1rem; border-radius: 6px; margin-bottom: 2rem;">
+<div style="vertical-align: middle; font-size: 0.7rem; line-height: 1.8rem; opacity: 0.6;">Authored by</div>
+{% for author in authors %}
+<div style="margin-left: 1rem; padding-left: 1rem; border-left: 1px solid rbga(200, 200, 200, 0.5);">
+    <h5 style="font-size: 0.8rem; margin: 0;">{{ author.name }}</h5>
+    {% if author.contact %}<p style="font-size: 0.6rem; margin: 0;">{{ author.contact }}</p>{% endif %}
+</div>
+{% endfor %}
+</div>
+{% endif %}
+
+
+{% if description %}{{ description }}{% endif %}
+
+{% if timeline %}
+## Important Dates
+
+<div style="border-left: 4px solid gray; border-radius: 0 4px 4px 0; background: rgba(200, 200, 200, 0.15); margin: 2rem auto; padding: 1rem 2rem; position: relative; text-align: center; margin-left: 7rem;">
+{% for entry in timeline %}
+<div style="text-align: left; position: relative; padding-bottom: 1rem; margin-bottom: 1rem;">
+<div style="position: absolute; left: -10rem; text-align: right; font-size: 0.9rem; font-weight: 700; opacity: 0.7; min-width: 6rem; top: 2px;">{{ entry.date | date_format }}</div>
+
+<h3>{{ entry.title }}</h3>
+{% if entry.description %}{{ entry.description }}{% endif %}
+
+<div style="position: absolute; box-shadow: 0 0 0 4px gray; left: -2.5rem; background: #444; border-radius: 50%; height: 11px; width: 11px; top: 5px;"></div>
+</div>
+{% endfor %}
+</div>
+{% endif %}
+
+{% if objectives %}
+## Objectives
+{% for objective in objectives %}
+### {{ objective.title }}
+{% if objective.description %}{{ objective.description }}{% endif %}
+
+{% endfor %}
+{% endif %}
+
+{% if milestones %}
+## Milestones
+
+<div style="border-left: 4px solid gray; border-radius: 0 4px 4px 0; background: rgba(200, 200, 200, 0.15); margin: 2rem auto; padding: 1rem 2rem; position: relative; text-align: center; margin-left: 7rem;">
+{% for milestone in milestones %}
+<div style="text-align: left; position: relative; padding-bottom: 1rem; margin-bottom: 1rem;">
+<div style="position: absolute; left: -10rem; text-align: right; font-size: 0.9rem; font-weight: 700; opacity: 0.7; min-width: 6rem; top: 2px;">M{{ loop.index }}</div>
+
+<h3>{{ milestone.title }}</h3>
+{% if milestone.description %}{{ milestone.description }}{% endif %}
+
+{% if milestone.deliverables %}
+{% for deliverable in milestone.deliverables %}
+<div style="position: relative; border-radius: 4px; box-shadow: 2px 2px 10px rgba(0,0,0,0.3); background-color: rgba(0, 0, 0, 0.1); padding: 10px; 20px; margin: 2rem 0; padding-left: 20px;">
+<div style="position: absolute; top: 0; left: 0; bottom: 0; width: 8px; border-radius: 4px 0 0 4px; background-color: {{ deliverable.state | default('TODO') | state_color }}"></div>
+<h4 style="margin-top: 0">
+<span style="float: right; margin: 0;">{{ deliverable.state | default('TODO') }}</span>
+
+{{ deliverable.title }}
+{% if deliverable.requirement %}<span style="display: inline; font-size: 90%; padding: 3px 5px; border-radius: 4px; background-color: {{ deliverable.requirement | requirement_color }}; color: white; margin: 0 2px;"> {{ deliverable.requirement }}</span>{% endif %}
+</h4>
+
+{% if deliverable.description %}{{ deliverable.description }}{% endif %}
+
+{% if deliverable.reference %}[Read more &rarr;]({{ deliverable.reference }}){% endif %}
+</div>
+{% endfor %}
+{% endif %}
+
+<div style="position: absolute; box-shadow: 0 0 0 4px gray; left: -2.5rem; background: #444; border-radius: 50%; height: 11px; width: 11px; top: 5px;"></div>
+</div>
+{% endfor %}
+</div>
+{% endif %}
+
