@@ -23,7 +23,7 @@
   "devDependencies": {
     "@vuepress/bundler-vite": "2.0.0-rc.26",
     "@vuepress/plugin-palette": "2.0.0-rc.121",
-    "@vuepress/plugin-register-components": "2.0.0-rc.118",
+    "@vuepress/plugin-register-components": "2.0.0-rc.122",
     "@vuepress/theme-default": "2.0.0-rc.122",
     "@vuepress/utils": "2.0.0-rc.26",
     "ace-builds": "^1.43.6",
