@@ -5,9 +5,11 @@ import (
 	_ "embed"
 	"encoding/json"
 	"log"
+	"strings"
 	"text/template"
 
 	"github.com/SierraSoftworks/roadmap"
+	"github.com/gomarkdown/markdown"
 	"github.com/pkg/errors"
 )
 
@@ -26,6 +28,9 @@ func render(r *roadmap.Roadmap, t string) (string, error) {
 			}
 
 			return string(out)
+		},
+		"markdown": func(in string) string {
+			return strings.TrimSpace(string(markdown.ToHTML([]byte(in), nil, nil)))
 		},
 		"stateColor": func(state string) string {
 			switch state {

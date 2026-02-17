@@ -23,7 +23,7 @@
 <div style="position: absolute; left: -10rem; text-align: right; font-size: 0.9rem; font-weight: 700; opacity: 0.7; min-width: 6rem; top: 2px;">{{ .Date.Format "2006-01-02" }}</div>
 
 <h3>{{ .Title }}</h3>
-{{ .Description }}
+{{ .Description | markdown }}
 
 <div style="position: absolute; box-shadow: 0 0 0 4px gray; left: -2.5rem; background: #444; border-radius: 50%; height: 11px; width: 11px; top: 5px;"></div>
 </div>
@@ -45,7 +45,9 @@
 <div style="position: absolute; left: -10rem; text-align: right; font-size: 0.9rem; font-weight: 700; opacity: 0.7; min-width: 6rem; top: 2px;">M{{ add $i 1 }}</div>
 
 <h3>{{ $m.Title }}</h3>
-{{ $m.Description }}
+{{ $m.Description | markdown }}
+
+{{ with $m.Reference }}<a href="{{ . }}">Read more &rarr;</a>{{ end }}
 
 {{ range $m.Deliverables }}
 <div style="position: relative; border-radius: 4px; box-shadow: 2px 2px 10px rgba(0,0,0,0.3); background-color: rgba(0, 0, 0, 0.1); padding: 10px; 20px; margin: 2rem 0; padding-left: 20px;">
@@ -57,9 +59,9 @@
 {{ with .Requirement }}<span style="display: inline; font-size: 90%; padding: 3px 5px; border-radius: 4px; background-color: {{ . | requirementColor }}; color: white; margin: 0 2px;"> {{ . }}</span>{{ end }}
 </h4>
 
-{{ .Description }}
+{{ .Description | markdown }}
 
-{{ with .Reference }}[Read more &rarr;]({{ . }}){{ end }}
+{{ with .Reference }}<a href="{{ . }}">Read more &rarr;</a>{{ end }}
 </div>
 {{ end }}
 

@@ -24,7 +24,7 @@
 <div style="position: absolute; left: -10rem; text-align: right; font-size: 0.9rem; font-weight: 700; opacity: 0.7; min-width: 6rem; top: 2px;">{{ entry.date | date_format }}</div>
 
 <h3>{{ entry.title }}</h3>
-{% if entry.description %}{{ entry.description }}{% endif %}
+{% if entry.description %}{{ entry.description | markdown }}{% endif %}
 
 <div style="position: absolute; box-shadow: 0 0 0 4px gray; left: -2.5rem; background: #444; border-radius: 50%; height: 11px; width: 11px; top: 5px;"></div>
 </div>
@@ -50,7 +50,9 @@
 <div style="position: absolute; left: -10rem; text-align: right; font-size: 0.9rem; font-weight: 700; opacity: 0.7; min-width: 6rem; top: 2px;">M{{ loop.index }}</div>
 
 <h3>{{ milestone.title }}</h3>
-{% if milestone.description %}{{ milestone.description }}{% endif %}
+{% if milestone.description %}{{ milestone.description | markdown }}{% endif %}
+
+{% if milestone.reference %}<a href="{{ milestone.reference }}">Read more &rarr;</a>{% endif %}
 
 {% if milestone.deliverables %}
 {% for deliverable in milestone.deliverables %}
@@ -63,9 +65,9 @@
 {% if deliverable.requirement %}<span style="display: inline; font-size: 90%; padding: 3px 5px; border-radius: 4px; background-color: {{ deliverable.requirement | requirement_color }}; color: white; margin: 0 2px;"> {{ deliverable.requirement }}</span>{% endif %}
 </h4>
 
-{% if deliverable.description %}{{ deliverable.description }}{% endif %}
+{% if deliverable.description %}{{ deliverable.description | markdown }}{% endif %}
 
-{% if deliverable.reference %}[Read more &rarr;]({{ deliverable.reference }}){% endif %}
+{% if deliverable.reference %}<a href="{{ deliverable.reference }}">Read more &rarr;</a>{% endif %}
 </div>
 {% endfor %}
 {% endif %}

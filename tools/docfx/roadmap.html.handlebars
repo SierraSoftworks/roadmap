@@ -47,6 +47,10 @@
                 <h3 class="timeline-item__title section-subtitle">{{ this.Title }}</h3>
                 <div class="timeline-item_description">
                     {{markdown this.Description ../_model}}
+
+                    {{#with this.Reference}}
+                    <a class="card-link" href="{{ this }}">Read more &rarr;</a>
+                    {{/with}}
                 
                     {{#each this.Deliverables}}
                     <div id="deliverable-{{ this.ID }}" class="card card-{{ this.State }}">
