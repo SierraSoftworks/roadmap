@@ -128,6 +128,11 @@
                     "type": "string",
                     "description": "A markdown formatted description of what this milestone represents and, if appropriate, the justification for its presence and prioritization."
                 },
+                "reference": {
+                    "type": "string",
+                    "format": "uri",
+                    "description": "A URI at which additional information about this milestone may be found (whether that be documentation or a tracking ticket)."
+                },
                 "deliverables": {
                     "type": "array",
                     "description": "The list of deliverables which make up this milestone. Deliverables usually map to specific pieces of work which may be delegated to a member of your team.",

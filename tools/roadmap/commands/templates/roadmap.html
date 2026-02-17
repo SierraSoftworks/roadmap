@@ -61,6 +61,10 @@
                     <h3 class="timeline-item__title section-subtitle">{{ $m.Title }}</h3>
                     <div class="timeline-item_description">
                         {{ .Description | markdown }}
+
+                        {{ with $m.Reference }}
+                        <a class="card-link" href="{{ . }}">Read more &rarr;</a>
+                        {{ end }}
                     
                         {{ range $m.Deliverables }}
                         <div id="milestone-{{ $m.ID }}-deliverable-{{ .ID }}" class="card card-{{ .State }}">

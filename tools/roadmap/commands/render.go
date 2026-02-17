@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	htmpl "html/template"
 	"log"
+	"strings"
 	"text/template"
 
 	"github.com/SierraSoftworks/roadmap"
@@ -22,6 +23,9 @@ func getDefaultTextRenderFunctions() template.FuncMap {
 			}
 
 			return string(out)
+		},
+		"markdown": func(in string) string {
+			return strings.TrimSpace(string(markdown.ToHTML([]byte(in), nil, nil)))
 		},
 		"add": func(a, b int) int {
 			return a + b

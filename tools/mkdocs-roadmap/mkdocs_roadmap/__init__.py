@@ -8,6 +8,7 @@ from mkdocs.config.base import Config
 import os
 import yaml
 import jinja2
+import markdown as md_lib
 from pathlib import Path
 from typing import Dict, Any
 
@@ -31,6 +32,11 @@ def requirement_color(requirement: str) -> str:
         "MAY": "#3ABDE0",
     }
     return colors.get(requirement, "#888")
+
+
+def render_markdown(text: str) -> str:
+    """Render markdown text to HTML."""
+    return md_lib.markdown(text)
 
 
 def date_format(date_value) -> str:
@@ -81,6 +87,7 @@ class RoadmapPlugin(BasePlugin):
         env.filters['state_color'] = state_color
         env.filters['requirement_color'] = requirement_color
         env.filters['date_format'] = date_format
+        env.filters['markdown'] = render_markdown
 
         self.template = env.get_template('roadmap')
         return config

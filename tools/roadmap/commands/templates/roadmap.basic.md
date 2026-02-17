@@ -27,7 +27,9 @@
 {{ range $i,$m := .Milestones }}
 ### **M{{ add $i 1 }}** | {{ $m.Title }}
 {{ $m.Description }}
-
+{{ with $m.Reference }}
+[Read more &rarr;]({{ . }})
+{{ end }}
 {{ range $di, $d := $m.Deliverables }}
 #### **{{ .Requirement }}::{{ .State }}** | {{ with $d.Reference }}[{{ $d.Title }}]({{ . }}){{ else }}{{ $d.Title }}{{ end }}
 {{ .Description }}

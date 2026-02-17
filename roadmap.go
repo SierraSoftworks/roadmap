@@ -166,6 +166,10 @@ type Milestone struct {
 	// information about the milestone.
 	Description string `json:"description,omitempty"`
 
+	// The Reference is a URL at which additional information about the milestone can
+	// be found. This may be documentation, a tracking ticket or a PR.
+	Reference string `json:"reference,omitempty"`
+
 	// The Deliverables are concrete tasks which combine to achieve a given milestone.
 	Deliverables []*Deliverable `json:"deliverables,omitempty"`
 }

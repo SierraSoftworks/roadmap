@@ -8,6 +8,8 @@ namespace Roadmap.DotFX.Models
 
         public string Description { get; set; }
 
+        public string Reference { get; set; }
+
         public IEnumerable<Deliverable> Deliverables { get; set; }
     }
 }

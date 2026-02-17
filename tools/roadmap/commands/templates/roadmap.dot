@@ -20,7 +20,7 @@ digraph Roadmap {
   {{- with $milestone -}}
   {{- $id := .ID }}
   
-    {{ $id }}[label={{ .Title | json }},tooltip={{ .Description | json }}];
+    {{ $id }}[label={{ .Title | json }},tooltip={{ .Description | json }}{{ with .Reference }},labelhref={{ . | json }}{{ end }}];
   {{- if gt $index 0 }}
     {{ (index $root.Milestones (add $index -1)).ID }} -> {{ $id }};
   {{- else }}
