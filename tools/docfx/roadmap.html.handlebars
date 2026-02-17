@@ -52,6 +52,10 @@
                     <a class="card-link" href="{{ this }}">Read more &rarr;</a>
                     {{/with}}
                 
+                    {{#if ../params.collapsed}}
+                    {{#if this.Deliverables}}
+                    <details class="deliverables-collapse">
+                    <summary class="deliverables-summary">{{deliverableSummary this.Deliverables}}</summary>
                     {{#each this.Deliverables}}
                     <div id="deliverable-{{ this.ID }}" class="card card-{{ this.State }}">
                         <h4 class="card-title">
@@ -66,6 +70,24 @@
                         {{/with}}
                     </div>
                     {{/each}}
+                    </details>
+                    {{/if}}
+                    {{else}}
+                    {{#each this.Deliverables}}
+                    <div id="deliverable-{{ this.ID }}" class="card card-{{ this.State }}">
+                        <h4 class="card-title">
+                            <p class="card-state">{{ this.State }}</p>
+                            {{ this.Title }}
+                            {{#with this.Requirement}}<span class="tablet tablet-{{ this }}">{{ this }}</span>{{/with}}
+                        </h4>
+                        {{markdown this.Description ../../_model}}
+
+                        {{#with this.Reference}}
+                        <a class="card-link" href="{{ this }}">Read more &rarr;</a>
+                        {{/with}}
+                    </div>
+                    {{/each}}
+                    {{/if}}
                 </div>
             </div>
             {{/each}}

@@ -32,6 +32,10 @@ var serveHtmlCommand = cli.Command{
 			Usage:   "The `PORT` to listen on.",
 			Value:   8080,
 		},
+		&cli.BoolFlag{
+			Name:  "collapsed",
+			Usage: "Collapse milestone deliverables into expandable sections.",
+		},
 	},
 	Action: func(c *cli.Context) error {
 		http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
@@ -49,7 +53,10 @@ var serveHtmlCommand = cli.Command{
 				return
 			}
 
-			dot, err := renderHtmlTemplate(rm, htmlRoadmapTemplate, template.FuncMap{
+			params := map[string]interface{}{
+				"collapsed": c.Bool("collapsed"),
+			}
+			dot, err := renderHtmlTemplate(rm, htmlRoadmapTemplate, params, template.FuncMap{
 				"stylesheet": func() template.CSS {
 					return template.CSS(htmlRoadmapCss)
 				},

@@ -46,6 +46,10 @@ var frontmatterMdRenderCommand = cli.Command{
 			Usage:     "The output `FILE` (defaults to stdout).",
 			TakesFile: true,
 		},
+		&cli.BoolFlag{
+			Name:  "collapsed",
+			Usage: "Collapse milestone deliverables into expandable sections.",
+		},
 	},
 	Action: func(c *cli.Context) error {
 		f, err := os.ReadFile(c.String("input"))
@@ -63,7 +67,10 @@ var frontmatterMdRenderCommand = cli.Command{
 			tmpl = frontmatterMdRoadmapBasicTemplate
 		}
 
-		dot, err := renderTextTemplate(r, tmpl, template.FuncMap{
+		params := map[string]interface{}{
+			"collapsed": c.Bool("collapsed"),
+		}
+		dot, err := renderTextTemplate(r, tmpl, params, template.FuncMap{
 			"stateColor": func(state string) string {
 				switch state {
 				case "TODO":

@@ -50,6 +50,13 @@
 
 {{ with $m.Reference }}<a href="{{ . }}">Read more &rarr;</a>{{ end }}
 
+{{ if and (param "collapsed") ($m.Deliverables) }}
+{{- $done := countByState $m.Deliverables "DONE" -}}
+{{- $doing := countByState $m.Deliverables "DOING" -}}
+{{- $skip := countByState $m.Deliverables "SKIP" -}}
+{{- $todo := sub (len $m.Deliverables) (add (add $done $doing) $skip) -}}
+<details style="margin: 0.5rem 0;">
+<summary style="cursor: pointer; padding: 0.5rem 0; font-size: 0.9rem; opacity: 0.8; list-style: revert;">{{ len $m.Deliverables }} deliverable{{ if ne (len $m.Deliverables) 1 }}s{{ end }} -{{ if gt $done 0 }} <span style="color: #3EAF7C;">{{ $done }} done</span>{{ if or (gt $doing 0) (gt $todo 0) (gt $skip 0) }},{{ end }}{{ end }}{{ if gt $doing 0 }} <span style="color: #63B2EB;">{{ $doing }} in progress</span>{{ if or (gt $todo 0) (gt $skip 0) }},{{ end }}{{ end }}{{ if gt $todo 0 }} <span style="color: #aaa;">{{ $todo }} to do</span>{{ if gt $skip 0 }},{{ end }}{{ end }}{{ if gt $skip 0 }} <span style="color: #F65BD2;">{{ $skip }} skipped</span>{{ end }}</summary>
 {{ range $m.Deliverables }}
 <div style="position: relative; border-radius: 4px; box-shadow: 2px 2px 10px rgba(0,0,0,0.3); background-color: rgba(0, 0, 0, 0.1); margin: 2rem 0; padding: 10px 20px;">
 <div style="position: absolute; top: 0; left: 0; bottom: 0; width: 8px; border-radius: 4px 0 0 4px; background-color: {{ .State | stateColor }}"></div>
@@ -64,6 +71,24 @@
 
 {{ with .Reference }}<a href="{{ . }}">Read more &rarr;</a>{{ end }}
 </div>
+{{ end }}
+</details>
+{{ else }}
+{{ range $m.Deliverables }}
+<div style="position: relative; border-radius: 4px; box-shadow: 2px 2px 10px rgba(0,0,0,0.3); background-color: rgba(0, 0, 0, 0.1); margin: 2rem 0; padding: 10px 20px;">
+<div style="position: absolute; top: 0; left: 0; bottom: 0; width: 8px; border-radius: 4px 0 0 4px; background-color: {{ .State | stateColor }}"></div>
+<h4 style="margin-top: 0; line-height: 1.8">
+<span style="float: right; margin: 0;">{{ .State }}</span>
+
+{{ .Title }}
+{{ with .Requirement }}<span style="display: inline; font-size: 90%; padding: 3px 5px; border-radius: 4px; background-color: {{ . | requirementColor }}; color: white; margin: 0 2px;"> {{ . }}</span>{{ end }}
+</h4>
+
+{{ .Description | markdown }}
+
+{{ with .Reference }}<a href="{{ . }}">Read more &rarr;</a>{{ end }}
+</div>
+{{ end }}
 {{ end }}
 
 <div style="position: absolute; box-shadow: 0 0 0 4px gray; left: -2.5rem; background: #444; border-radius: 50%; height: 11px; width: 11px; top: 5px;"></div>

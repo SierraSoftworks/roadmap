@@ -39,6 +39,10 @@ func main() {
 				Required:  false,
 				TakesFile: true,
 			},
+			&cli.BoolFlag{
+				Name:  "collapsed",
+				Usage: "Collapse milestone deliverables into expandable sections.",
+			},
 		},
 		Action: func(c *cli.Context) error {
 			f, err := os.ReadFile(c.String("input"))
@@ -63,7 +67,10 @@ func main() {
 				template = roadmapTemplateBasic
 			}
 
-			dot, err := render(r, template)
+			params := map[string]interface{}{
+				"collapsed": c.Bool("collapsed"),
+			}
+			dot, err := render(r, template, params)
 			if err != nil {
 				return err
 			}

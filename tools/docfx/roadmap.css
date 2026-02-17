@@ -170,3 +170,31 @@
 .roadmap .tablet-MAY {
     background-color: #3ABDE0;  
 }
+
+.roadmap .deliverables-collapse {
+    margin: 0.5rem 0;
+}
+
+.roadmap .deliverables-summary {
+    cursor: pointer;
+    padding: 0.5rem 0;
+    font-size: 0.9rem;
+    opacity: 0.8;
+    list-style: revert;
+}
+
+.roadmap .state-done {
+    color: #3EAF7C;
+}
+
+.roadmap .state-doing {
+    color: #63B2EB;
+}
+
+.roadmap .state-todo {
+    color: #aaa;
+}
+
+.roadmap .state-skip {
+    color: #F65BD2;
+}

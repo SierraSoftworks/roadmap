@@ -67,6 +67,7 @@ class RoadmapPlugin(BasePlugin):
 
     config_scheme = (
         ('roadmaps', config_options.Type(list, default=[])),
+        ('collapsed', config_options.Type(bool, default=False)),
     )
 
     def __init__(self):
@@ -128,6 +129,11 @@ class RoadmapPlugin(BasePlugin):
                         deliverable['requirement'] = 'SHOULD'
                     if 'state' not in deliverable:
                         deliverable['state'] = 'TODO'
+
+            # Pass template parameters as a params dict for extensibility
+            roadmap_data['params'] = {
+                'collapsed': self.config.get('collapsed', False),
+            }
 
             # Render template - pass roadmap_data as root context to match Go template structure
             rendered = self.template.render(**roadmap_data)
