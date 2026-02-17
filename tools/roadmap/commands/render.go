@@ -30,6 +30,18 @@ func getDefaultTextRenderFunctions() template.FuncMap {
 		"add": func(a, b int) int {
 			return a + b
 		},
+		"sub": func(a, b int) int {
+			return a - b
+		},
+		"countByState": func(deliverables []*roadmap.Deliverable, state string) int {
+			count := 0
+			for _, d := range deliverables {
+				if d.State == state {
+					count++
+				}
+			}
+			return count
+		},
 	}
 }
 
@@ -48,6 +60,18 @@ func getDefaultHTMLRenderFunctions() htmpl.FuncMap {
 		},
 		"add": func(a, b int) int {
 			return a + b
+		},
+		"sub": func(a, b int) int {
+			return a - b
+		},
+		"countByState": func(deliverables []*roadmap.Deliverable, state string) int {
+			count := 0
+			for _, d := range deliverables {
+				if d.State == state {
+					count++
+				}
+			}
+			return count
 		},
 	}
 }

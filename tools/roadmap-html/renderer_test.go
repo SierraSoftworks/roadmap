@@ -43,7 +43,7 @@ func TestRender(t *testing.T) {
 		},
 	}
 
-	html, err := render(r)
+	html, err := render(r, false)
 	require.NoError(t, err, "no error should have been returned")
 
 	t.Log(html)

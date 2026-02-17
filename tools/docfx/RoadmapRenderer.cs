@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Composition;
 using System.IO;
@@ -37,8 +37,11 @@ namespace Roadmap.DotFX
             var roadmap = deserializer.Deserialize<Models.Roadmap>(File.ReadAllText(EnvironmentContext.FileAbstractLayer.GetPhysicalPath(file.File)));
             var localPathFromRoot = PathUtility.MakeRelativePath(EnvironmentContext.BaseDirectory, EnvironmentContext.FileAbstractLayer.GetPhysicalPath(file.File));
 
+            var collapsed = metadata.ContainsKey("collapsed") && metadata["collapsed"] is true;
+
             return new FileModel(file, new Dictionary<string, object>{
-                ["conceptual"] = roadmap
+                ["conceptual"] = roadmap,
+                ["collapsed"] = collapsed
             })
             {
                 LocalPathFromRoot = localPathFromRoot,

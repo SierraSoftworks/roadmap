@@ -29,6 +29,10 @@ func main() {
 				Required:  false,
 				TakesFile: true,
 			},
+			&cli.BoolFlag{
+				Name:  "collapsed",
+				Usage: "Collapse milestone deliverables into expandable sections.",
+			},
 		},
 		Action: func(c *cli.Context) error {
 			f, err := ioutil.ReadFile(c.String("input"))
@@ -41,7 +45,7 @@ func main() {
 				return err
 			}
 
-			dot, err := render(r)
+			dot, err := render(r, c.Bool("collapsed"))
 			if err != nil {
 				return err
 			}

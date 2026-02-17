@@ -18,7 +18,7 @@ var roadmapCss string
 //go:embed roadmap.html
 var roadmapTemplate string
 
-func render(r *roadmap.Roadmap) (string, error) {
+func render(r *roadmap.Roadmap, collapsed bool) (string, error) {
 	tmpl := template.Must(template.New("roadmap").Funcs(template.FuncMap{
 		"json": func(in string) string {
 			out, err := json.Marshal(in)
@@ -33,6 +33,21 @@ func render(r *roadmap.Roadmap) (string, error) {
 		},
 		"add": func(a, b int) int {
 			return a + b
+		},
+		"sub": func(a, b int) int {
+			return a - b
+		},
+		"countByState": func(deliverables []*roadmap.Deliverable, state string) int {
+			count := 0
+			for _, d := range deliverables {
+				if d.State == state {
+					count++
+				}
+			}
+			return count
+		},
+		"collapsed": func() bool {
+			return collapsed
 		},
 		"stylesheet": func() template.CSS {
 			return template.CSS(roadmapCss)

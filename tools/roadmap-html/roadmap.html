@@ -62,6 +62,13 @@
                         <a class="card-link" href="{{ . }}">Read more &rarr;</a>
                         {{ end }}
                     
+                        {{ if and (collapsed) ($m.Deliverables) }}
+                        {{- $done := countByState $m.Deliverables "DONE" -}}
+                        {{- $doing := countByState $m.Deliverables "DOING" -}}
+                        {{- $skip := countByState $m.Deliverables "SKIP" -}}
+                        {{- $todo := sub (len $m.Deliverables) (add (add $done $doing) $skip) -}}
+                        <details class="deliverables-collapse">
+                        <summary class="deliverables-summary">{{ len $m.Deliverables }} deliverable{{ if ne (len $m.Deliverables) 1 }}s{{ end }} -{{ if gt $done 0 }} <span class="state-done">{{ $done }} done</span>{{ if or (gt $doing 0) (gt $todo 0) (gt $skip 0) }},{{ end }}{{ end }}{{ if gt $doing 0 }} <span class="state-doing">{{ $doing }} in progress</span>{{ if or (gt $todo 0) (gt $skip 0) }},{{ end }}{{ end }}{{ if gt $todo 0 }} <span class="state-todo">{{ $todo }} to do</span>{{ if gt $skip 0 }},{{ end }}{{ end }}{{ if gt $skip 0 }} <span class="state-skip">{{ $skip }} skipped</span>{{ end }}</summary>
                         {{ range $m.Deliverables }}
                         <div id="milestone-{{ $m.ID }}-deliverable-{{ .ID }}" class="card card-{{ .State }}">
                             <h4 class="card-title">
@@ -75,6 +82,23 @@
                             <a class="card-link" href="{{ . }}">Read more &rarr;</a>
                             {{ end }}
                         </div>
+                        {{ end }}
+                        </details>
+                        {{ else }}
+                        {{ range $m.Deliverables }}
+                        <div id="milestone-{{ $m.ID }}-deliverable-{{ .ID }}" class="card card-{{ .State }}">
+                            <h4 class="card-title">
+                                <p class="card-state">{{ .State }}</p>
+                                {{ .Title }}
+                                {{ with .Requirement }}<span class="tablet tablet-{{ . }}">{{ . }}</span>{{ end }}
+                            </h4>
+                            {{ .Description | markdown }}
+
+                            {{ with .Reference }}
+                            <a class="card-link" href="{{ . }}">Read more &rarr;</a>
+                            {{ end }}
+                        </div>
+                        {{ end }}
                         {{ end }}
                     </div>
                 </div>

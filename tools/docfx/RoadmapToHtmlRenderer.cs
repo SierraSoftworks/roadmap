@@ -87,6 +87,34 @@ namespace Roadmap.DotFX
                 writer.Write(parameters.At<int>(0) + parameters.At<int>(1));
             });
 
+            Handlebars.RegisterHelper("deliverableSummary", (writer, context, parameters) =>
+            {
+                var deliverables = parameters.At<IEnumerable<Models.Deliverable>>(0);
+                if (deliverables == null) return;
+
+                int total = 0, done = 0, doing = 0, skip = 0;
+                foreach (var d in deliverables)
+                {
+                    total++;
+                    switch (d.State)
+                    {
+                        case Models.State.DONE: done++; break;
+                        case Models.State.DOING: doing++; break;
+                        case Models.State.SKIP: skip++; break;
+                    }
+                }
+                int todo = total - done - doing - skip;
+
+                var parts = new List<string>();
+                if (done > 0) parts.Add($"<span class=\"state-done\">{done} done</span>");
+                if (doing > 0) parts.Add($"<span class=\"state-doing\">{doing} in progress</span>");
+                if (todo > 0) parts.Add($"<span class=\"state-todo\">{todo} to do</span>");
+                if (skip > 0) parts.Add($"<span class=\"state-skip\">{skip} skipped</span>");
+
+                var plural = total != 1 ? "s" : "";
+                writer.WriteSafeString($"{total} deliverable{plural} - {string.Join(", ", parts)}");
+            });
+
             Handlebars.Configuration.FormatterProviders.Add(new CustomDateTimeFormatter("yyyy-MM-dd"));
 
             return models;
@@ -97,10 +125,12 @@ namespace Roadmap.DotFX
             if (model.Content is Dictionary<string, object> buildState)
             {
                 var content = buildState["conceptual"] as Models.Roadmap;
+                var collapsed = buildState.ContainsKey("collapsed") && buildState["collapsed"] is true;
 
                 buildState["conceptual"] = Handlebars.Compile(Templates.GetHtmlTemplate())(new
                 {
                     roadmap = content,
+                    collapsed = collapsed,
                     stylesheet = Templates.GetStylesheet(),
                     _model = model
                 });

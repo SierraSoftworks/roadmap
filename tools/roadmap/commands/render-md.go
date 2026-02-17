@@ -46,6 +46,10 @@ var mdRenderCommand = cli.Command{
 			Required:  false,
 			TakesFile: true,
 		},
+		&cli.BoolFlag{
+			Name:  "collapsed",
+			Usage: "Collapse milestone deliverables into expandable sections.",
+		},
 	},
 	Action: func(c *cli.Context) error {
 		f, err := os.ReadFile(c.String("input"))
@@ -69,7 +73,11 @@ var mdRenderCommand = cli.Command{
 			tmpl = mdRoadmapBasicTemplate
 		}
 
+		isCollapsed := c.Bool("collapsed")
 		dot, err := renderTextTemplate(r, tmpl, template.FuncMap{
+			"collapsed": func() bool {
+				return isCollapsed
+			},
 			"stateColor": func(state string) string {
 				switch state {
 				case "TODO":

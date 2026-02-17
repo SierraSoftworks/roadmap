@@ -38,6 +38,10 @@ var htmlRenderCommand = cli.Command{
 			Usage:     "The output `FILE` (defaults to stdout).",
 			TakesFile: true,
 		},
+		&cli.BoolFlag{
+			Name:  "collapsed",
+			Usage: "Collapse milestone deliverables into expandable sections.",
+		},
 	},
 	Action: func(c *cli.Context) error {
 		f, err := os.ReadFile(c.String("input"))
@@ -50,7 +54,11 @@ var htmlRenderCommand = cli.Command{
 			return err
 		}
 
+		isCollapsed := c.Bool("collapsed")
 		dot, err := renderHtmlTemplate(r, htmlRoadmapTemplate, template.FuncMap{
+			"collapsed": func() bool {
+				return isCollapsed
+			},
 			"stylesheet": func() template.CSS {
 				return template.CSS(htmlRoadmapCss)
 			},

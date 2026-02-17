@@ -199,3 +199,31 @@ a:hover, a:focus {
 .tablet-MAY {
     background-color: #3ABDE0;  
 }
+
+.deliverables-collapse {
+    margin: 0.5rem 0;
+}
+
+.deliverables-summary {
+    cursor: pointer;
+    padding: 0.5rem 0;
+    font-size: 0.9rem;
+    opacity: 0.8;
+    list-style: revert;
+}
+
+.state-done {
+    color: #3EAF7C;
+}
+
+.state-doing {
+    color: #63B2EB;
+}
+
+.state-todo {
+    color: #aaa;
+}
+
+.state-skip {
+    color: #F65BD2;
+}
