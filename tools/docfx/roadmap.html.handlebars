@@ -52,7 +52,7 @@
                     <a class="card-link" href="{{ this }}">Read more &rarr;</a>
                     {{/with}}
                 
-                    {{#if ../collapsed}}
+                    {{#if ../params.collapsed}}
                     {{#if this.Deliverables}}
                     <details class="deliverables-collapse">
                     <summary class="deliverables-summary">{{deliverableSummary this.Deliverables}}</summary>

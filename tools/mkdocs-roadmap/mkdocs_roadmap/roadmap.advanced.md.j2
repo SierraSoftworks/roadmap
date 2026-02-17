@@ -54,7 +54,7 @@
 
 {% if milestone.reference %}<a href="{{ milestone.reference }}">Read more &rarr;</a>{% endif %}
 
-{% if collapsed and milestone.deliverables %}
+{% if params.collapsed and milestone.deliverables %}
 <details style="margin: 0.5rem 0;">
 <summary style="cursor: pointer; padding: 0.5rem 0; font-size: 0.9rem; opacity: 0.8; list-style: revert;">
 {%- set done_count = milestone.deliverables | selectattr('state', 'equalto', 'DONE') | list | length -%}

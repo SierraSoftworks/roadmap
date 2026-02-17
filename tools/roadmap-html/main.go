@@ -45,7 +45,10 @@ func main() {
 				return err
 			}
 
-			dot, err := render(r, c.Bool("collapsed"))
+			params := map[string]interface{}{
+				"collapsed": c.Bool("collapsed"),
+			}
+			dot, err := render(r, params)
 			if err != nil {
 				return err
 			}

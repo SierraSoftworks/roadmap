@@ -67,7 +67,10 @@ func main() {
 				template = roadmapTemplateBasic
 			}
 
-			dot, err := render(r, template, c.Bool("collapsed"))
+			params := map[string]interface{}{
+				"collapsed": c.Bool("collapsed"),
+			}
+			dot, err := render(r, template, params)
 			if err != nil {
 				return err
 			}

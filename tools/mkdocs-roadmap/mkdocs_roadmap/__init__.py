@@ -130,8 +130,10 @@ class RoadmapPlugin(BasePlugin):
                     if 'state' not in deliverable:
                         deliverable['state'] = 'TODO'
 
-            # Pass collapsed option from plugin config
-            roadmap_data['collapsed'] = self.config.get('collapsed', False)
+            # Pass template parameters as a params dict for extensibility
+            roadmap_data['params'] = {
+                'collapsed': self.config.get('collapsed', False),
+            }
 
             # Render template - pass roadmap_data as root context to match Go template structure
             rendered = self.template.render(**roadmap_data)

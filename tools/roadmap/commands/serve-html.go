@@ -53,11 +53,10 @@ var serveHtmlCommand = cli.Command{
 				return
 			}
 
-			isCollapsed := c.Bool("collapsed")
-			dot, err := renderHtmlTemplate(rm, htmlRoadmapTemplate, template.FuncMap{
-				"collapsed": func() bool {
-					return isCollapsed
-				},
+			params := map[string]interface{}{
+				"collapsed": c.Bool("collapsed"),
+			}
+			dot, err := renderHtmlTemplate(rm, htmlRoadmapTemplate, params, template.FuncMap{
 				"stylesheet": func() template.CSS {
 					return template.CSS(htmlRoadmapCss)
 				},

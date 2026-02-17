@@ -67,11 +67,10 @@ var frontmatterMdRenderCommand = cli.Command{
 			tmpl = frontmatterMdRoadmapBasicTemplate
 		}
 
-		isCollapsed := c.Bool("collapsed")
-		dot, err := renderTextTemplate(r, tmpl, template.FuncMap{
-			"collapsed": func() bool {
-				return isCollapsed
-			},
+		params := map[string]interface{}{
+			"collapsed": c.Bool("collapsed"),
+		}
+		dot, err := renderTextTemplate(r, tmpl, params, template.FuncMap{
 			"stateColor": func(state string) string {
 				switch state {
 				case "TODO":

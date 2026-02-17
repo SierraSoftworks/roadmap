@@ -44,7 +44,7 @@ var graphvizRenderCommand = cli.Command{
 			return err
 		}
 
-		dot, err := renderTextTemplate(r, graphvizRoadmapTemplate, template.FuncMap{
+		dot, err := renderTextTemplate(r, graphvizRoadmapTemplate, map[string]interface{}{}, template.FuncMap{
 			"stateColor": func(state string) string {
 				switch state {
 				case "TODO":

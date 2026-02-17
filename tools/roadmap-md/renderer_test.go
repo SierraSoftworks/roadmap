@@ -43,7 +43,7 @@ func TestRenderSimple(t *testing.T) {
 		},
 	}
 
-	md, err := render(r, roadmapTemplateBasic, false)
+	md, err := render(r, roadmapTemplateBasic, map[string]interface{}{})
 	require.NoError(t, err, "no error should have been returned")
 
 	t.Log(md)
@@ -87,7 +87,7 @@ func TestRenderAdvanced(t *testing.T) {
 		},
 	}
 
-	md, err := render(r, roadmapTemplateAdvanced, false)
+	md, err := render(r, roadmapTemplateAdvanced, map[string]interface{}{})
 	require.NoError(t, err, "no error should have been returned")
 
 	t.Log(md)

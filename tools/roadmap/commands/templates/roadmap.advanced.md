@@ -50,7 +50,7 @@
 
 {{ with $m.Reference }}<a href="{{ . }}">Read more &rarr;</a>{{ end }}
 
-{{ if and (collapsed) ($m.Deliverables) }}
+{{ if and (param "collapsed") ($m.Deliverables) }}
 {{- $done := countByState $m.Deliverables "DONE" -}}
 {{- $doing := countByState $m.Deliverables "DOING" -}}
 {{- $skip := countByState $m.Deliverables "SKIP" -}}

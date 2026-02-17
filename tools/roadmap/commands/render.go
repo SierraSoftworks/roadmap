@@ -76,8 +76,12 @@ func getDefaultHTMLRenderFunctions() htmpl.FuncMap {
 	}
 }
 
-func renderHtmlTemplate(r *roadmap.Roadmap, t string, f htmpl.FuncMap) (string, error) {
+func renderHtmlTemplate(r *roadmap.Roadmap, t string, params map[string]interface{}, f htmpl.FuncMap) (string, error) {
 	fm := getDefaultHTMLRenderFunctions()
+
+	fm["param"] = func(key string) interface{} {
+		return params[key]
+	}
 
 	for k, v := range f {
 		fm[k] = v
@@ -94,8 +98,12 @@ func renderHtmlTemplate(r *roadmap.Roadmap, t string, f htmpl.FuncMap) (string, 
 	return buf.String(), nil
 }
 
-func renderTextTemplate(r *roadmap.Roadmap, t string, f template.FuncMap) (string, error) {
+func renderTextTemplate(r *roadmap.Roadmap, t string, params map[string]interface{}, f template.FuncMap) (string, error) {
 	fm := getDefaultTextRenderFunctions()
+
+	fm["param"] = func(key string) interface{} {
+		return params[key]
+	}
 
 	for k, v := range f {
 		fm[k] = v

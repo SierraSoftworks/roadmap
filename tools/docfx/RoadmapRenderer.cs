@@ -41,7 +41,9 @@ namespace Roadmap.DotFX
 
             return new FileModel(file, new Dictionary<string, object>{
                 ["conceptual"] = roadmap,
-                ["collapsed"] = collapsed
+                ["params"] = new Dictionary<string, object>{
+                    ["collapsed"] = collapsed
+                }
             })
             {
                 LocalPathFromRoot = localPathFromRoot,

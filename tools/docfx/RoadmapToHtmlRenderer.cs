@@ -125,12 +125,12 @@ namespace Roadmap.DotFX
             if (model.Content is Dictionary<string, object> buildState)
             {
                 var content = buildState["conceptual"] as Models.Roadmap;
-                var collapsed = buildState.ContainsKey("collapsed") && buildState["collapsed"] is true;
+                var paramsBag = buildState.ContainsKey("params") ? buildState["params"] as Dictionary<string, object> : new Dictionary<string, object>();
 
                 buildState["conceptual"] = Handlebars.Compile(Templates.GetHtmlTemplate())(new
                 {
                     roadmap = content,
-                    collapsed = collapsed,
+                    @params = paramsBag,
                     stylesheet = Templates.GetStylesheet(),
                     _model = model
                 });
