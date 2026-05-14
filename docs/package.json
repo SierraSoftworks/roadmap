@@ -25,7 +25,7 @@
     "@vuepress/plugin-palette": "2.0.0-rc.128",
     "@vuepress/plugin-register-components": "2.0.0-rc.128",
     "@vuepress/theme-default": "2.0.0-rc.128",
-    "@vuepress/utils": "2.0.0-rc.29",
+    "@vuepress/utils": "2.0.0-rc.30",
     "ace-builds": "^1.44.0",
     "js-yaml": "^4.1.1",
     "markdown-it": "^14.1.1",
