@@ -29,7 +29,7 @@
     "ace-builds": "^1.44.0",
     "js-yaml": "^4.1.1",
     "markdown-it": "^14.1.1",
-    "sass-embedded": "^1.99.0",
+    "sass-embedded": "^1.100.0",
     "vuepress": "2.0.0-rc.30"
   }
 }
