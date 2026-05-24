@@ -26,7 +26,7 @@ resource "cloudflare_dns_record" "dnsauth" {
   zone_id = data.cloudflare_zones.root.result[0].id
   name    = "_dnsauth.${var.app-name}"
   type    = "TXT"
-  content = azurerm_static_web_app_custom_domain.domain.validation_token
+  content = coalesce(azurerm_static_web_app_custom_domain.domain.validation_token, "validated")
   ttl     = 300
 
   lifecycle {
