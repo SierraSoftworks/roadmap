@@ -26,7 +26,7 @@ resource "cloudflare_dns_record" "dnsauth" {
   zone_id = data.cloudflare_zones.root.result[0].id
   name    = "_dnsauth.${var.app-name}"
   type    = "TXT"
-  content = azurerm_static_web_app.website.custom_domain_verification_id
+  content = var.custom_domain_verification_id
   ttl     = 300
 
   lifecycle {
