@@ -13,3 +13,26 @@ resource "azurerm_dns_cname_record" "cname" {
     azurerm_static_web_app.website
   ]
 }
+
+data "cloudflare_zones" "root" {
+  filter = {
+    account_id = var.cloudflare_account_id
+    name       = var.root-domain
+  }
+}
+
+resource "cloudflare_dns_record" "cname" {
+  zone_id = data.cloudflare_zones.root.result[0].id
+  name    = var.app-name
+  type    = "CNAME"
+  content = azurerm_static_web_app.website.default_host_name
+  ttl     = 300
+
+  lifecycle {
+    prevent_destroy = true
+  }
+
+  depends_on = [
+    azurerm_static_web_app.website
+  ]
+}

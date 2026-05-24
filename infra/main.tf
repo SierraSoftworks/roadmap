@@ -23,6 +23,11 @@ variable "resource_group" {
   default     = "app-roadmap"
 }
 
+variable "cloudflare_account_id" {
+  description = "The Cloudflare account ID used to query DNS zones."
+  type        = string
+}
+
 variable "tags" {
   description = "The tags which should apply to the resource."
   type        = map(string)
