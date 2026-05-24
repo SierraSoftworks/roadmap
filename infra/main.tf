@@ -28,11 +28,6 @@ variable "cloudflare_account_id" {
   type        = string
 }
 
-variable "custom_domain_verification_id" {
-  description = "The Azure Static Web App custom domain verification ID used for _dnsauth TXT records."
-  type        = string
-}
-
 variable "tags" {
   description = "The tags which should apply to the resource."
   type        = map(string)

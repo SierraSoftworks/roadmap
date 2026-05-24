@@ -26,16 +26,12 @@ resource "cloudflare_dns_record" "dnsauth" {
   zone_id = data.cloudflare_zones.root.result[0].id
   name    = "_dnsauth.${var.app-name}"
   type    = "TXT"
-  content = var.custom_domain_verification_id
+  content = azurerm_static_web_app_custom_domain.domain.validation_token
   ttl     = 300
 
   lifecycle {
     prevent_destroy = true
   }
-
-  depends_on = [
-    azurerm_static_web_app.website
-  ]
 }
 
 resource "cloudflare_dns_record" "cname" {
