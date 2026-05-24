@@ -18,8 +18,8 @@ resource "azurerm_static_web_app" "website" {
 
 resource "azurerm_static_web_app_custom_domain" "domain" {
   static_web_app_id = azurerm_static_web_app.website.id
-  domain_name       = trimsuffix(azurerm_dns_cname_record.cname.fqdn, ".")
-  validation_type   = "cname-delegation"
+  domain_name       = "${var.app-name}.${var.root-domain}"
+  validation_type   = "dns-txt-token"
 
   lifecycle {
     prevent_destroy = true
@@ -29,6 +29,6 @@ resource "azurerm_static_web_app_custom_domain" "domain" {
   }
 
   depends_on = [
-    azurerm_dns_cname_record.cname
+    cloudflare_dns_record.dnsauth
   ]
 }
