@@ -39,7 +39,7 @@ resource "cloudflare_dns_record" "cname" {
   name    = var.app-name
   type    = "CNAME"
   content = azurerm_static_web_app.website.default_host_name
-  ttl     = 300
+  ttl     = 1
   proxied = true
 
   lifecycle {

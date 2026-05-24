@@ -27,4 +27,5 @@ resource "azurerm_static_web_app_custom_domain" "domain" {
       validation_type
     ]
   }
+
 }
