@@ -28,8 +28,4 @@ resource "azurerm_static_web_app_custom_domain" "domain" {
     ]
   }
 
-  depends_on = [
-    cloudflare_dns_record.dnsauth,
-    cloudflare_dns_record.cname,
-  ]
 }
