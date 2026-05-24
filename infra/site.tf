@@ -27,4 +27,9 @@ resource "azurerm_static_web_app_custom_domain" "domain" {
       validation_type
     ]
   }
+
+  depends_on = [
+    cloudflare_dns_record.dnsauth,
+    cloudflare_dns_record.cname,
+  ]
 }
