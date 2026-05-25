@@ -12,5 +12,5 @@ resource "cloudflare_dns_record" "cname" {
   type    = "CNAME"
   content = "sierrasoftworks.github.io"
   ttl     = 1
-  proxied = false
+  proxied = true
 }
