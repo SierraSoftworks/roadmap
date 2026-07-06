@@ -25,9 +25,10 @@ export default defineUserConfig({
     ['meta', { name: "description", content: "Road map is a tool which allows you to generate your team's road-maps from structured data." }],
     ['link', { rel: 'icon', href: '/favicon.ico' }],
     ["script", {
-      defer: "",
-      src: "https://analytics.sierrasoftworks.com/script.js",
-      "data-website-id": "2628facb-e7b8-4bc7-83f3-08c764a1c78e",
+      async: "",
+      src: "https://analytics.sierrasoftworks.com/tracker.js",
+      "data-api": "https://analytics.sierrasoftworks.com",
+      "data-auto-capture-exceptions": "true",
     }],
   ],
 
