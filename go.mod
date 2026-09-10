@@ -4,7 +4,7 @@ go 1.25.0
 
 require (
 	github.com/fatih/color v1.19.0
-	github.com/gomarkdown/markdown v0.0.0-20260217112301-37c66b85d6ab
+	github.com/gomarkdown/markdown v0.0.0-20260411013819-759bbc3e3207
 	github.com/pkg/errors v0.9.1
 	github.com/santhosh-tekuri/jsonschema/v5 v5.3.1
 	github.com/stretchr/testify v1.12.1
