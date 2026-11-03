@@ -42,9 +42,50 @@
             "items": {
                 "$ref": "#/definitions/Milestone"
             }
+        },
+        "config": {
+            "type": "object",
+            "description": "Configuration used by the road map tools when rendering this road map, keyed by the name of the tool (e.g. markdown, html, graphviz) or a custom profile name selected using the tool's --profile flag.",
+            "additionalProperties": {
+                "$ref": "#/definitions/ToolConfig"
+            },
+            "examples": [
+                {
+                    "markdown": {
+                        "output": "roadmap.md",
+                        "simple": true
+                    }
+                }
+            ]
         }
     },
     "definitions": {
+        "ToolConfig": {
+            "type": "object",
+            "description": "The options used by a tool when rendering this road map. Options mirror the tool's command line flags and are overridden by any flags which are explicitly provided.",
+            "properties": {
+                "output": {
+                    "type": "string",
+                    "description": "The file to write the rendered road map to, relative to the directory containing this road map file."
+                },
+                "template": {
+                    "type": "string",
+                    "description": "A custom template file to render the road map with, relative to the directory containing this road map file."
+                },
+                "simple": {
+                    "type": "boolean",
+                    "description": "Emit simplified Markdown for maximum compatibility."
+                },
+                "collapsed": {
+                    "type": "boolean",
+                    "description": "Collapse milestone deliverables into expandable sections."
+                },
+                "frontmatter": {
+                    "type": ["object", "string"],
+                    "description": "Additional frontmatter fields to include when rendering Markdown with a frontmatter preamble."
+                }
+            }
+        },
         "Author": {
             "type": "object",
             "description": "The details of an author responsible for this road map, should a reader have questions.",

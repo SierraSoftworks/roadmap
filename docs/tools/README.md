@@ -54,7 +54,7 @@ go install github.com/SierraSoftworks/roadmap/tools/roadmap@latest
 roadmap render md --in roadmap.yml --out roadmap.md
 
 # Generate a simplified Markdown file (for GitHub comments/issues etc)
-roadmap render md --int roadmap.yml --out roadmap.md --simple
+roadmap render md --in roadmap.yml --out roadmap.md --simple
 ```
 
 #### [MkDocs](/tools/documentation/mkdocs/README.md)
@@ -72,6 +72,27 @@ your repository and render that in your browser.
 ```
 https://roadmap.sierrasoftworks.com/viewer/github.com#USER/REPO
 ```
+
+## Continuous Integration
+If you'd like to render your road maps automatically, you can use the GitHub Action provided by this
+repository. It will find every road map matching the `files` glob pattern and render it using the
+`tool` you select, reading its options (like the `output` file) from the `config.<tool>` block in
+each road map (see the [Markdown](/tools/documentation/markdown/README.md#configuration) docs for details).
+
+```yaml
+steps:
+  - uses: actions/checkout@v5
+  - uses: SierraSoftworks/roadmap@main
+    with:
+      tool: markdown          # markdown, frontmatter-markdown, html or graphviz
+      files: "**/roadmap.yml" # a glob pattern used to find your road maps
+      # profile: docs         # read options from config.docs instead of config.markdown
+      # args: --collapsed     # additional flags, which override the config block
+```
+
+::: tip
+The action builds the `roadmap` tool from source, so it will install Go using `actions/setup-go`.
+:::
 
 ## Ticketing
 Once you've finalized your road map, you will probably want to execute on it. Manually entering

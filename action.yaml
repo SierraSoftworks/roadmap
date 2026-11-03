@@ -1,0 +1,56 @@
+name: Road Map
+description: Render your roadmap.yml files to Markdown, HTML or GraphViz as part of your CI pipeline.
+author: Sierra Softworks
+branding:
+  icon: map
+  color: green
+
+inputs:
+  tool:
+    description: |
+      The renderer to use, matching a `roadmap render` sub-command: markdown (md), frontmatter-markdown (fmd), html or graphviz (dot).
+      Options for each file are read from its `config.<tool>` block (or `config.<profile>` if a profile is provided).
+    required: false
+    default: markdown
+  files:
+    description: A glob pattern used to find the roadmap files to render (`**` matches any number of directories).
+    required: false
+    default: "**/roadmap.yml"
+  profile:
+    description: The name of the entry in each roadmap's `config` block to read options from (defaults to the tool name).
+    required: false
+    default: ""
+  args:
+    description: Additional command line arguments to pass to the renderer, overriding any options set in the roadmap's config block.
+    required: false
+    default: ""
+
+runs:
+  using: composite
+  steps:
+    - name: Set up Go
+      uses: actions/setup-go@v7
+      with:
+        go-version-file: ${{ github.action_path }}/go.mod
+        cache: false
+
+    - name: Build roadmap
+      shell: bash
+      working-directory: ${{ github.action_path }}
+      run: |
+        ext=""
+        if [ "$RUNNER_OS" = "Windows" ]; then ext=".exe"; fi
+        go build -o "$RUNNER_TEMP/roadmap-action/roadmap$ext" ./tools/roadmap
+        echo "$RUNNER_TEMP/roadmap-action" >> "$GITHUB_PATH"
+
+    - name: Render roadmaps
+      shell: bash
+      env:
+        ROADMAP_TOOL: ${{ inputs.tool }}
+        ROADMAP_FILES: ${{ inputs.files }}
+        ROADMAP_PROFILE: ${{ inputs.profile }}
+        ROADMAP_ARGS: ${{ inputs.args }}
+      run: |
+        # ROADMAP_ARGS is intentionally unquoted so that it is split into separate arguments.
+        # shellcheck disable=SC2086
+        roadmap render "$ROADMAP_TOOL" --input "$ROADMAP_FILES" ${ROADMAP_PROFILE:+--profile "$ROADMAP_PROFILE"} $ROADMAP_ARGS

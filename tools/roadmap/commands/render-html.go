@@ -2,11 +2,10 @@ package commands
 
 import (
 	_ "embed"
-	"fmt"
 	"html/template"
-	"os"
 
 	"github.com/SierraSoftworks/roadmap"
+	"github.com/SierraSoftworks/roadmap/tools/internal/toolconfig"
 	"github.com/urfave/cli/v2"
 )
 
@@ -23,11 +22,11 @@ var htmlRenderCommand = cli.Command{
 	Name:  "html",
 	Usage: "Generate an HTML file which can be opened to visualize your roadmap specification.",
 	Flags: []cli.Flag{
-
+		toolconfig.ProfileFlag("html"),
 		&cli.StringFlag{
 			Name:      "input",
 			Aliases:   []string{"in"},
-			Usage:     "The input roadmap.yml `FILE`.",
+			Usage:     "The input roadmap.yml `FILE`, or a glob pattern (e.g. **/roadmap.yml) matching several of them.",
 			Value:     "roadmap.yml",
 			TakesFile: true,
 			Required:  true,
@@ -44,36 +43,23 @@ var htmlRenderCommand = cli.Command{
 		},
 	},
 	Action: func(c *cli.Context) error {
-		f, err := os.ReadFile(c.String("input"))
-		if err != nil {
-			return err
-		}
+		return toolconfig.Render(c, func(r *roadmap.Roadmap, opts *toolconfig.Options) (string, error) {
+			params := map[string]interface{}{
+				"collapsed": opts.Bool("collapsed"),
+			}
+			dot, err := renderHtmlTemplate(r, htmlRoadmapTemplate, params, template.FuncMap{
+				"stylesheet": func() template.CSS {
+					return template.CSS(htmlRoadmapCss)
+				},
+				"script": func() template.JS {
+					return template.JS("")
+				},
+			})
+			if err != nil {
+				return "", err
+			}
 
-		r, err := roadmap.Parse(f)
-		if err != nil {
-			return err
-		}
-
-		params := map[string]interface{}{
-			"collapsed": c.Bool("collapsed"),
-		}
-		dot, err := renderHtmlTemplate(r, htmlRoadmapTemplate, params, template.FuncMap{
-			"stylesheet": func() template.CSS {
-				return template.CSS(htmlRoadmapCss)
-			},
-			"script": func() template.JS {
-				return template.JS("")
-			},
+			return dot, nil
 		})
-		if err != nil {
-			return err
-		}
-
-		if c.String("output") != "" {
-			return os.WriteFile(c.String("output"), []byte(dot), os.ModePerm)
-		} else {
-			_, err := fmt.Println(dot)
-			return err
-		}
 	},
 }

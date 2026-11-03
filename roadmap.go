@@ -64,6 +64,26 @@ type Roadmap struct {
 	// to visualize where they are on the road map without being overly constrained to the
 	// specific execution.
 	Milestones []*Milestone `json:"milestones,omitempty"`
+
+	// The Config block holds per-tool (or per-profile) configuration which tools will use
+	// as defaults when rendering this road map. Each key is the name of a profile (by default,
+	// the name of the tool) and its value holds options which mirror that tool's command line
+	// flags, e.g. `config.markdown.output: roadmap.md`.
+	Config map[string]ToolConfig `json:"config,omitempty"`
+}
+
+// A ToolConfig holds the options for a specific tool or profile. Its keys mirror the
+// command line flags supported by the tool which consumes it (e.g. `output`, `simple`).
+type ToolConfig map[string]interface{}
+
+// Profile returns the configuration for the named tool or profile, or nil if no
+// such configuration has been provided in this road map.
+func (r *Roadmap) Profile(name string) ToolConfig {
+	if r.Config == nil {
+		return nil
+	}
+
+	return r.Config[name]
 }
 
 // Validate will check whether the provided road map is valid according to the embedded
