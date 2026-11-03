@@ -24,3 +24,19 @@ jobs:
 
     - name: Test
       run: go test -v ./...
+
+  action:
+    name: GitHub Action
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v7
+
+    - name: Render roadmap.yml
+      uses: ./
+      with:
+        tool: markdown
+        files: roadmap.yml
+        args: --output ${{ runner.temp }}/roadmap.md
+
+    - name: Check output
+      run: test -s "${{ runner.temp }}/roadmap.md"

@@ -15,5 +15,9 @@ namespace Roadmap.DotFX.Models
         public IEnumerable<Objective> Objectives { get; set; }
 
         public IEnumerable<Milestone> Milestones { get; set; }
+
+        // The config block is used by the CLI tools and is accepted here so that road maps
+        // which include it can still be rendered by DocFX.
+        public Dictionary<string, Dictionary<string, object>> Config { get; set; }
     }
 }

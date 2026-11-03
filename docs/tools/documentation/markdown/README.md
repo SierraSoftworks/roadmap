@@ -35,6 +35,31 @@ roadmap render md --in roadmap.yml --out roadmap.md
 ```
 :::
 
+### Configuration
+Rather than passing flags every time you render your road map, you can add a `config` block to
+your `roadmap.yml` file. Each entry is keyed by the name of the tool (`markdown` here, or
+`frontmatter-markdown` for the frontmatter renderer) and its options mirror the command line flags.
+Paths are resolved relative to the `roadmap.yml` file, and any flags you pass explicitly take precedence.
+
+```yaml
+title: Example Road Map
+
+config:
+  markdown:
+    output: roadmap.md
+    simple: true
+```
+
+You can then render one (or many) road maps without specifying their outputs, using a glob pattern
+(where `**` matches any number of directories) to find them.
+
+```sh
+roadmap render md --in "**/roadmap.yml"
+```
+
+If you need several configurations for the same tool, give them their own names and select one
+using the `--profile` flag (e.g. `roadmap render md --in roadmap.yml --profile docs`).
+
 ### Frontmatter Support
 If you're rendering your roadmap to a target which supports Markdown frontmatter, you can use the
 `frontmatter-markdown` format (aka `fmd`) to generate a Markdown file which includes frontmatter fields

@@ -115,3 +115,46 @@ func TestDeliverableID(t *testing.T) {
 
 	assert.Contains(t, d.ID(), "Deliverable_Title_", "the ID should include the normalized title")
 }
+
+func TestParseConfig(t *testing.T) {
+	in := getTestSchema() + `
+config:
+  markdown:
+    output: roadmap.md
+    simple: true
+  docs:
+    output: ../docs/roadmap.md
+    collapsed: true
+`
+
+	r, err := roadmap.Parse([]byte(in))
+	require.NoError(t, err, "the parser should not return an error")
+	require.NotNil(t, r, "the road map should not be nil")
+
+	require.NoError(t, r.Validate(), "the validation should not return an error")
+
+	assert.Equal(t, roadmap.ToolConfig{"output": "roadmap.md", "simple": true}, r.Profile("markdown"))
+	assert.Equal(t, "../docs/roadmap.md", r.Profile("docs")["output"])
+	assert.Nil(t, r.Profile("html"), "missing profiles should be nil")
+}
+
+func TestProfileWithoutConfig(t *testing.T) {
+	r, err := roadmap.Parse([]byte(getTestSchema()))
+	require.NoError(t, err, "the parser should not return an error")
+
+	assert.Nil(t, r.Config)
+	assert.Nil(t, r.Profile("markdown"), "missing profiles should be nil")
+}
+
+func TestValidateInvalidConfig(t *testing.T) {
+	in := getTestSchema() + `
+config:
+  markdown:
+    simple: "yes please"
+`
+
+	r, err := roadmap.Parse([]byte(in))
+	require.NoError(t, err, "the parser should not return an error")
+
+	assert.Error(t, r.Validate(), "the validation should reject options with the wrong type")
+}
