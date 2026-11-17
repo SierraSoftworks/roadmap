@@ -23,14 +23,13 @@ setup(
         "Intended Audience :: Developers",
         "Operating System :: OS Independent",
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: 3.11",
         "Programming Language :: Python :: 3.12",
         "Programming Language :: Python :: 3.13",
         "Programming Language :: Python :: 3.14",
     ],
-    python_requires=">=3.7",
+    python_requires=">=3.10",
     # Dependencies are defined in pyproject.toml to avoid duplication
     entry_points={
         "mkdocs.plugins": [
