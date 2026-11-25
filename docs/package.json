@@ -24,7 +24,7 @@
     "@vuepress/bundler-vite": "2.0.0-rc.32",
     "@vuepress/plugin-palette": "2.0.0-rc.139",
     "@vuepress/plugin-register-components": "2.0.0-rc.138",
-    "@vuepress/theme-default": "2.0.0-rc.139",
+    "@vuepress/theme-default": "2.0.0-rc.140",
     "@vuepress/utils": "2.0.0-rc.32",
     "ace-builds": "^1.45.2",
     "js-yaml": "^5.5.0",
