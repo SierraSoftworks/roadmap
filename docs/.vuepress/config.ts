@@ -1,5 +1,5 @@
 import { defineUserConfig, PageHeader } from 'vuepress'
-import { defaultTheme } from '@vuepress/theme-default'
+import { themeClassic } from '@vuepress/theme-classic'
 import { viteBundler } from '@vuepress/bundler-vite'
 import { getDirname, path } from '@vuepress/utils'
 
@@ -41,7 +41,7 @@ export default defineUserConfig({
 
   bundler: viteBundler(),
 
-  theme: defaultTheme({
+  theme: themeClassic({
     logo: 'https://cdn.sierrasoftworks.com/logos/icon.png',
     logoDark: 'https://cdn.sierrasoftworks.com/logos/icon_light.png',
 
